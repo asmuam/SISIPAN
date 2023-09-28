@@ -42,6 +42,7 @@ public class PilihanController {
     }
 
     @GetMapping("/{mahasiswa_id}")
+    // mengambil pilihan dari id_mhs
     public ResponseEntity<?> getPilihanById(@PathVariable Long mahasiswa_id) {
         try {
             // Cari pilihan berdasarkan ID mhs
@@ -68,6 +69,7 @@ public class PilihanController {
     }
 
     @PostMapping("/{mahasiswa_id}")
+    // membuat pilihan untuk id_mhs
     public ResponseEntity<?> createPilihan(@PathVariable Long mahasiswa_id, @RequestBody PilihanRequest request) {
         try {
             // Cari mahasiswa berdasarkan ID mhs
@@ -95,6 +97,7 @@ public class PilihanController {
     }
 
     @PatchMapping("/{mahasiswa_id}")
+    //edit pilihan dari id_mhs
     public ResponseEntity<?> updatePilihan(@PathVariable Long mahasiswa_id, @RequestBody PilihanRequest request) {
         try {
             // Cari pilihan berdasarkan ID mhs
@@ -116,6 +119,7 @@ public class PilihanController {
     }
 
     @DeleteMapping("/{mahasiswa_id}")
+    //delete pilihan dari id_mhs
     public ResponseEntity<?> deletePilihan(@PathVariable Long mahasiswa_id) {
         try {
             // Cari pilihan berdasarkan ID

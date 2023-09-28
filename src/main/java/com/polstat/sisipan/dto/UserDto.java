@@ -4,8 +4,7 @@
  */
 package com.polstat.sisipan.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import com.polstat.sisipan.entity.Mahasiswa;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,5 +21,7 @@ import lombok.NoArgsConstructor;
 public class UserDto {
 
     private Long id;
-    private String username;
+    private Mahasiswa mahasiswa;
+    private String email;
+    private String password;
 }

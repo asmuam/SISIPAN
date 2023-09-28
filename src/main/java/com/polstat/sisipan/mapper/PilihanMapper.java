@@ -15,13 +15,11 @@ public class PilihanMapper {
 
     public static PilihanDto mapToPilihanDto(Pilihan pilihan) {
         return PilihanDto.builder()
-                // Anda dapat menambahkan properti yang sesuai di sini
                 .build();
     }
 
     public static Pilihan mapToPilihan(PilihanDto pilihanDto) {
         return Pilihan.builder()
-                // Anda dapat menambahkan properti yang sesuai di sini
                 .build();
     }
 }

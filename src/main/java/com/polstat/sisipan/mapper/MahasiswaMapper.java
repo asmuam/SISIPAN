@@ -13,13 +13,25 @@ import com.polstat.sisipan.entity.Mahasiswa;
  */
 public class MahasiswaMapper {
 
-    public static MahasiswaDto mapToMahasiswaDto(Mahasiswa member) {
+    public static MahasiswaDto mapToMahasiswaDto(Mahasiswa mahasiswa) {
         return MahasiswaDto.builder()
+                .id(mahasiswa.getId())
+                .nim(mahasiswa.getNim())
+                .name(mahasiswa.getName())
+                .prodi(mahasiswa.getProdi())
+                .provinsi(mahasiswa.getProvinsi())
+                .ipk(mahasiswa.getIpk())
                 .build();
     }
 
-    public static Mahasiswa mapToMahasiswa(MahasiswaDto memberDto) {
+    public static Mahasiswa mapToMahasiswa(MahasiswaDto mahasiswaDto) {
         return Mahasiswa.builder()
+                .id(mahasiswaDto.getId())
+                .nim(mahasiswaDto.getNim())
+                .name(mahasiswaDto.getName())
+                .prodi(mahasiswaDto.getProdi())
+                .provinsi(mahasiswaDto.getProvinsi())
+                .ipk(mahasiswaDto.getIpk())
                 .build();
     }
 }

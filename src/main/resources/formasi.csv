@@ -1,0 +1,549 @@
+provinsi_id,kode_satker,nama satuankerja
+1,1100,BPS Provinsi Aceh
+1,1101,BPS Kabupaten Simeulue
+1,1102,BPS Kabupaten Aceh Singkil
+1,1103,BPS Kabupaten Aceh Selatan
+1,1104,BPS Kabupaten Aceh Tenggara
+1,1105,BPS Kabupaten Aceh Timur
+1,1106,BPS Kabupaten Aceh Tengah
+1,1107,BPS Kabupaten Aceh Barat
+1,1108,BPS Kabupaten Aceh Besar
+1,1109,BPS Kabupaten Pidie
+1,1110,BPS Kabupaten Bireuen
+1,1111,BPS Kabupaten Aceh Utara
+1,1112,BPS Kabupaten Aceh Barat Daya
+1,1113,BPS Kabupaten Gayo Lues
+1,1114,BPS Kabupaten Aceh Tamiang
+1,1115,BPS Kabupaten Nagan Raya
+1,1116,BPS Kabupaten Aceh Jaya
+1,1117,BPS Kabupaten Bener Meriah
+1,1118,BPS Kabupaten Pidie Jaya
+1,1171,BPS Kota Banda Aceh
+1,1172,BPS Kota Sabang
+1,1173,BPS Kota Langsa
+1,1174,BPS Kota Lhokseumawe
+1,1175,BPS Kota Subulussalam
+2,1200,BPS Provinsi Sumatera Utara
+2,1201,BPS Kabupaten Nias
+2,1202,BPS Kabupaten Mandailing Natal
+2,1203,BPS Kabupaten Tapanuli Selatan
+2,1204,BPS Kabupaten Tapanuli Tengah
+2,1205,BPS Kabupaten Tapanuli Utara
+2,1206,BPS Kabupaten Toba Samosir
+2,1207,BPS Kabupaten Labuhan Batu
+2,1208,BPS Kabupaten Asahan
+2,1209,BPS Kabupaten Simalungun
+2,1210,BPS Kabupaten Dairi
+2,1211,BPS Kabupaten Karo
+2,1212,BPS Kabupaten Deli Serdang
+2,1213,BPS Kabupaten Langkat
+2,1214,BPS Kabupaten Nias Selatan
+2,1215,BPS Kabupaten Humbang Hasundutan
+2,1216,BPS Kabupaten Pakpak Bharat
+2,1217,BPS Kabupaten Samosir
+2,1218,BPS Kabupaten Serdang Bedagai
+2,1219,BPS Kabupaten Batu Bara
+2,1220,BPS Kabupaten Padang Lawas Utara
+2,1221,BPS Kabupaten Padang Lawas
+2,1222,BPS Kabupaten Labuhan Batu Selatan
+2,1223,BPS Kabupaten Labuhan Batu Utara
+2,1224,BPS Kabupaten Nias Utara
+2,1225,BPS Kabupaten Nias Barat
+2,1271,BPS Kota Sibolga
+2,1272,BPS Kota Tanjung Balai
+2,1273,BPS Kota Pematang Siantar
+2,1274,BPS Kota Tebing Tinggi
+2,1275,BPS Kota Medan
+2,1276,BPS Kota Binjai
+2,1277,BPS Kota Padangsidimpuan
+2,1278,BPS Kota Gunungsitoli
+3,1300,BPS Provinsi Sumatera Barat
+3,1301,BPS Kabupaten Kepulauan Mentawai
+3,1302,BPS Kabupaten Pesisir Selatan
+3,1303,BPS Kabupaten Solok
+3,1304,BPS Kabupaten Sijunjung
+3,1305,BPS Kabupaten Tanah Datar
+3,1306,BPS Kabupaten Padang Pariaman
+3,1307,BPS Kabupaten Agam
+3,1308,BPS Kabupaten Lima Puluh Kota
+3,1309,BPS Kabupaten Pasaman
+3,1310,BPS Kabupaten Solok Selatan
+3,1311,BPS Kabupaten Dharmasraya
+3,1312,BPS Kabupaten Pasaman Barat
+3,1371,BPS Kota Padang
+3,1372,BPS Kota Solok
+3,1373,BPS Kota Sawah Lunto
+3,1374,BPS Kota Padang Panjang
+3,1375,BPS Kota Bukittinggi
+3,1376,BPS Kota Payakumbuh
+3,1377,BPS Kota Pariaman
+4,1400,BPS Provinsi Riau
+4,1401,BPS Kabupaten Kuantan Singingi
+4,1402,BPS Kabupaten Indragiri Hulu
+4,1403,BPS Kabupaten Indragiri Hilir
+4,1404,BPS Kabupaten Pelalawan
+4,1405,BPS Kabupaten Siak
+4,1406,BPS Kabupaten Kampar
+4,1407,BPS Kabupaten Rokan Hulu
+4,1408,BPS Kabupaten Bengkalis
+4,1409,BPS Kabupaten Rokan Hilir
+4,1410,BPS Kabupaten Kepulauan Meranti
+4,1471,BPS Kota Pekanbaru
+4,1473,BPS Kota Dumai
+5,1500,BPS Provinsi Jambi
+5,1501,BPS Kabupaten Kerinci
+5,1502,BPS Kabupaten Merangin
+5,1503,BPS Kabupaten Sarolangun
+5,1504,BPS Kabupaten Batang Hari
+5,1505,BPS Kabupaten Muaro Jambi
+5,1506,BPS Kabupaten Tanjung Jabung Timur
+5,1507,BPS Kabupaten Tanjung Jabung Barat
+5,1508,BPS Kabupaten Tebo
+5,1509,BPS Kabupaten Bungo
+5,1571,BPS Kota Jambi
+5,1572,BPS Kota Sungai Penuh
+6,1600,BPS Provinsi Sumatera Selatan
+6,1601,BPS Kabupaten Ogan Komering Ulu
+6,1602,BPS Kabupaten Ogan Komering Ilir
+6,1603,BPS Kabupaten Muara Enim
+6,1604,BPS Kabupaten Lahat
+6,1605,BPS Kabupaten Musi Rawas
+6,1606,BPS Kabupaten Musi Banyuasin
+6,1607,BPS Kabupaten Banyu Asin
+6,1608,BPS Kabupaten Ogan Komering Ulu Selatan
+6,1609,BPS Kabupaten Ogan Komering Ulu Timur
+6,1610,BPS Kabupaten Ogan Ilir
+6,1611,BPS Kabupaten Empat Lawang
+6,1612,BPS Kabupaten Penukal Abab Lematang Ilir
+6,1613,BPS Kabupaten Musi Rawas Utara
+6,1671,BPS Kota Palembang
+6,1672,BPS Kota Prabumulih
+6,1673,BPS Kota Pagar Alam
+6,1674,BPS Kota Lubuklinggau
+7,1700,BPS Provinsi Bengkulu
+7,1701,BPS Kabupaten Bengkulu Selatan
+7,1702,BPS Kabupaten Rejang Lebong
+7,1703,BPS Kabupaten Bengkulu Utara
+7,1704,BPS Kabupaten Kaur
+7,1705,BPS Kabupaten Seluma
+7,1706,BPS Kabupaten Mukomuko
+7,1707,BPS Kabupaten Lebong
+7,1708,BPS Kabupaten Kepahiang
+7,1709,BPS Kabupaten Bengkulu Tengah
+7,1771,BPS Kota Bengkulu
+8,1800,BPS Provinsi Lampung
+8,1801,BPS Kabupaten Lampung Barat
+8,1802,BPS Kabupaten Tanggamus
+8,1803,BPS Kabupaten Lampung Selatan
+8,1804,BPS Kabupaten Lampung Timur
+8,1805,BPS Kabupaten Lampung Tengah
+8,1806,BPS Kabupaten Lampung Utara
+8,1807,BPS Kabupaten Way Kanan
+8,1808,BPS Kabupaten Tulangbawang
+8,1809,BPS Kabupaten Pesawaran
+8,1810,BPS Kabupaten Pringsewu
+8,1811,BPS Kabupaten Mesuji
+8,1812,BPS Kabupaten Tulang Bawang Barat
+8,1813,BPS Kabupaten Pesisir Barat
+8,1871,BPS Kota Bandar Lampung
+8,1872,BPS Kota Metro
+9,1900,BPS Provinsi Kep. Bangka Belitung
+9,1901,BPS Kabupaten Bangka
+9,1902,BPS Kabupaten Belitung
+9,1903,BPS Kabupaten Bangka Barat
+9,1904,BPS Kabupaten Bangka Tengah
+9,1905,BPS Kabupaten Bangka Selatan
+9,1906,BPS Kabupaten Belitung Timur
+9,1971,BPS Kota Pangkalpinang
+10,2100,BPS Provinsi Kep. Riau
+10,2101,BPS Kabupaten Karimun
+10,2102,BPS Kabupaten Bintan
+10,2103,BPS Kabupaten Natuna
+10,2104,BPS Kabupaten Lingga
+10,2105,BPS Kabupaten Kepulauan Anambas
+10,2171,BPS Kota B A T A M
+10,2172,BPS Kota Tanjung Pinang
+11,3100,BPS Provinsi Dki Jakarta
+11,3101,BPS Kabupaten Kepulauan Seribu
+11,3171,BPS Kota Jakarta Selatan
+11,3172,BPS Kota Jakarta Timur
+11,3173,BPS Kota Jakarta Pusat
+11,3174,BPS Kota Jakarta Barat
+11,3175,BPS Kota Jakarta Utara
+12,3200,BPS Provinsi Jawa Barat
+12,3201,BPS Kabupaten Bogor
+12,3202,BPS Kabupaten Sukabumi
+12,3203,BPS Kabupaten Cianjur
+12,3204,BPS Kabupaten Bandung
+12,3205,BPS Kabupaten Garut
+12,3206,BPS Kabupaten Tasikmalaya
+12,3207,BPS Kabupaten Ciamis
+12,3208,BPS Kabupaten Kuningan
+12,3209,BPS Kabupaten Cirebon
+12,3210,BPS Kabupaten Majalengka
+12,3211,BPS Kabupaten Sumedang
+12,3212,BPS Kabupaten Indramayu
+12,3213,BPS Kabupaten Subang
+12,3214,BPS Kabupaten Purwakarta
+12,3215,BPS Kabupaten Karawang
+12,3216,BPS Kabupaten Bekasi
+12,3217,BPS Kabupaten Bandung Barat
+12,3218,BPS Kabupaten Pangandaran
+12,3271,BPS Kota Bogor
+12,3272,BPS Kota Sukabumi
+12,3273,BPS Kota Bandung
+12,3274,BPS Kota Cirebon
+12,3275,BPS Kota Bekasi
+12,3276,BPS Kota Depok
+12,3277,BPS Kota Cimahi
+12,3278,BPS Kota Tasikmalaya
+12,3279,BPS Kota Banjar
+13,3300,BPS Provinsi Jawa Tengah
+13,3301,BPS Kabupaten Cilacap
+13,3302,BPS Kabupaten Banyumas
+13,3303,BPS Kabupaten Purbalingga
+13,3304,BPS Kabupaten Banjarnegara
+13,3305,BPS Kabupaten Kebumen
+13,3306,BPS Kabupaten Purworejo
+13,3307,BPS Kabupaten Wonosobo
+13,3308,BPS Kabupaten Magelang
+13,3309,BPS Kabupaten Boyolali
+13,3310,BPS Kabupaten Klaten
+13,3311,BPS Kabupaten Sukoharjo
+13,3312,BPS Kabupaten Wonogiri
+13,3313,BPS Kabupaten Karanganyar
+13,3314,BPS Kabupaten Sragen
+13,3315,BPS Kabupaten Grobogan
+13,3316,BPS Kabupaten Blora
+13,3317,BPS Kabupaten Rembang
+13,3318,BPS Kabupaten Pati
+13,3319,BPS Kabupaten Kudus
+13,3320,BPS Kabupaten Jepara
+13,3321,BPS Kabupaten Demak
+13,3322,BPS Kabupaten Semarang
+13,3323,BPS Kabupaten Temanggung
+13,3324,BPS Kabupaten Kendal
+13,3325,BPS Kabupaten Batang
+13,3326,BPS Kabupaten Pekalongan
+13,3327,BPS Kabupaten Pemalang
+13,3328,BPS Kabupaten Tegal
+13,3329,BPS Kabupaten Brebes
+13,3371,BPS Kota Magelang
+13,3372,BPS Kota Surakarta
+13,3373,BPS Kota Salatiga
+13,3374,BPS Kota Semarang
+13,3375,BPS Kota Pekalongan
+13,3376,BPS Kota Tegal
+14,3400,BPS Provinsi Di Yogyakarta
+14,3401,BPS Kabupaten Kulon Progo
+14,3402,BPS Kabupaten Bantul
+14,3403,BPS Kabupaten Gunungkidul
+14,3404,BPS Kabupaten Sleman
+14,3471,BPS Kota Yogyakarta
+15,3500,BPS Provinsi Jawa Timur
+15,3501,BPS Kabupaten Pacitan
+15,3502,BPS Kabupaten Ponorogo
+15,3503,BPS Kabupaten Trenggalek
+15,3504,BPS Kabupaten Tulungagung
+15,3505,BPS Kabupaten Blitar
+15,3506,BPS Kabupaten Kediri
+15,3507,BPS Kabupaten Malang
+15,3508,BPS Kabupaten Lumajang
+15,3509,BPS Kabupaten Jember
+15,3510,BPS Kabupaten Banyuwangi
+15,3511,BPS Kabupaten Bondowoso
+15,3512,BPS Kabupaten Situbondo
+15,3513,BPS Kabupaten Probolinggo
+15,3514,BPS Kabupaten Pasuruan
+15,3515,BPS Kabupaten Sidoarjo
+15,3516,BPS Kabupaten Mojokerto
+15,3517,BPS Kabupaten Jombang
+15,3518,BPS Kabupaten Nganjuk
+15,3519,BPS Kabupaten Madiun
+15,3520,BPS Kabupaten Magetan
+15,3521,BPS Kabupaten Ngawi
+15,3522,BPS Kabupaten Bojonegoro
+15,3523,BPS Kabupaten Tuban
+15,3524,BPS Kabupaten Lamongan
+15,3525,BPS Kabupaten Gresik
+15,3526,BPS Kabupaten Bangkalan
+15,3527,BPS Kabupaten Sampang
+15,3528,BPS Kabupaten Pamekasan
+15,3529,BPS Kabupaten Sumenep
+15,3571,BPS Kota Kediri
+15,3572,BPS Kota Blitar
+15,3573,BPS Kota Malang
+15,3574,BPS Kota Probolinggo
+15,3575,BPS Kota Pasuruan
+15,3576,BPS Kota Mojokerto
+15,3577,BPS Kota Madiun
+15,3578,BPS Kota Surabaya
+15,3579,BPS Kota Batu
+16,3600,BPS Provinsi Banten
+16,3601,BPS Kabupaten Pandeglang
+16,3602,BPS Kabupaten Lebak
+16,3603,BPS Kabupaten Tangerang
+16,3604,BPS Kabupaten Serang
+16,3671,BPS Kota Tangerang
+16,3672,BPS Kota Cilegon
+16,3673,BPS Kota Serang
+16,3674,BPS Kota Tangerang Selatan
+17,5100,BPS Provinsi Bali
+17,5101,BPS Kabupaten Jembrana
+17,5102,BPS Kabupaten Tabanan
+17,5103,BPS Kabupaten Badung
+17,5104,BPS Kabupaten Gianyar
+17,5105,BPS Kabupaten Klungkung
+17,5106,BPS Kabupaten Bangli
+17,5107,BPS Kabupaten Karangasem
+17,5108,BPS Kabupaten Buleleng
+17,5171,BPS Kota Denpasar
+18,5200,BPS Provinsi Nusa Tenggara Barat
+18,5201,BPS Kabupaten Lombok Barat
+18,5202,BPS Kabupaten Lombok Tengah
+18,5203,BPS Kabupaten Lombok Timur
+18,5204,BPS Kabupaten Sumbawa
+18,5205,BPS Kabupaten Dompu
+18,5206,BPS Kabupaten Bima
+18,5207,BPS Kabupaten Sumbawa Barat
+18,5208,BPS Kabupaten Lombok Utara
+18,5271,BPS Kota Mataram
+18,5272,BPS Kota Bima
+19,5300,BPS Provinsi Nusa Tenggara Timur
+19,5301,BPS Kabupaten Sumba Barat
+19,5302,BPS Kabupaten Sumba Timur
+19,5303,BPS Kabupaten Kupang
+19,5304,BPS Kabupaten Timor Tengah Selatan
+19,5305,BPS Kabupaten Timor Tengah Utara
+19,5306,BPS Kabupaten Belu
+19,5307,BPS Kabupaten Alor
+19,5308,BPS Kabupaten Lembata
+19,5309,BPS Kabupaten Flores Timur
+19,5310,BPS Kabupaten Sikka
+19,5311,BPS Kabupaten Ende
+19,5312,BPS Kabupaten Ngada
+19,5313,BPS Kabupaten Manggarai
+19,5314,BPS Kabupaten Rote Ndao
+19,5315,BPS Kabupaten Manggarai Barat
+19,5316,BPS Kabupaten Sumba Tengah
+19,5317,BPS Kabupaten Sumba Barat Daya
+19,5318,BPS Kabupaten Nagekeo
+19,5319,BPS Kabupaten Manggarai Timur
+19,5320,BPS Kabupaten Sabu Raijua
+19,5321,BPS Kabupaten Malaka
+19,5371,BPS Kota Kupang
+20,6100,BPS Provinsi Kalimantan Barat
+20,6101,BPS Kabupaten Sambas
+20,6102,BPS Kabupaten Bengkayang
+20,6103,BPS Kabupaten Landak
+20,6104,BPS Kabupaten Mempawah
+20,6105,BPS Kabupaten Sanggau
+20,6106,BPS Kabupaten Ketapang
+20,6107,BPS Kabupaten Sintang
+20,6108,BPS Kabupaten Kapuas Hulu
+20,6109,BPS Kabupaten Sekadau
+20,6110,BPS Kabupaten Melawi
+20,6111,BPS Kabupaten Kayong Utara
+20,6112,BPS Kabupaten Kubu Raya
+20,6171,BPS Kota Pontianak
+20,6172,BPS Kota Singkawang
+21,6200,BPS Provinsi Kalimantan Tengah
+21,6201,BPS Kabupaten Kotawaringin Barat
+21,6202,BPS Kabupaten Kotawaringin Timur
+21,6203,BPS Kabupaten Kapuas
+21,6204,BPS Kabupaten Barito Selatan
+21,6205,BPS Kabupaten Barito Utara
+21,6206,BPS Kabupaten Sukamara
+21,6207,BPS Kabupaten Lamandau
+21,6208,BPS Kabupaten Seruyan
+21,6209,BPS Kabupaten Katingan
+21,6210,BPS Kabupaten Pulang Pisau
+21,6211,BPS Kabupaten Gunung Mas
+21,6212,BPS Kabupaten Barito Timur
+21,6213,BPS Kabupaten Murung Raya
+21,6271,BPS Kota Palangka Raya
+22,6300,BPS Provinsi Kalimantan Selatan
+22,6301,BPS Kabupaten Tanah Laut
+22,6302,BPS Kabupaten Kotabaru
+22,6303,BPS Kabupaten Banjar
+22,6304,BPS Kabupaten Barito Kuala
+22,6305,BPS Kabupaten Tapin
+22,6306,BPS Kabupaten Hulu Sungai Selatan
+22,6307,BPS Kabupaten Hulu Sungai Tengah
+22,6308,BPS Kabupaten Hulu Sungai Utara
+22,6309,BPS Kabupaten Tabalong
+22,6310,BPS Kabupaten Tanah Bumbu
+22,6311,BPS Kabupaten Balangan
+22,6371,BPS Kota Banjarmasin
+22,6372,BPS Kota Banjar Baru
+23,6400,BPS Provinsi Kalimantan Timur
+23,6401,BPS Kabupaten Paser
+23,6402,BPS Kabupaten Kutai Barat
+23,6403,BPS Kabupaten Kutai Kartanegara
+23,6404,BPS Kabupaten Kutai Timur
+23,6405,BPS Kabupaten Berau
+23,6409,BPS Kabupaten Penajam Paser Utara
+23,6411,BPS Kabupaten Mahakam Hulu
+23,6471,BPS Kota Balikpapan
+23,6472,BPS Kota Samarinda
+23,6474,BPS Kota Bontang
+24,6500,BPS Provinsi Kalimantan Utara
+24,6501,BPS Kabupaten Malinau
+24,6502,BPS Kabupaten Bulungan
+24,6503,BPS Kabupaten Tana Tidung
+24,6504,BPS Kabupaten Nunukan
+24,6571,BPS Kota Tarakan
+25,7100,BPS Provinsi Sulawesi Utara
+25,7101,BPS Kabupaten Bolaang Mongondow
+25,7102,BPS Kabupaten Minahasa
+25,7103,BPS Kabupaten Kepulauan Sangihe
+25,7104,BPS Kabupaten Kepulauan Talaud
+25,7105,BPS Kabupaten Minahasa Selatan
+25,7106,BPS Kabupaten Minahasa Utara
+25,7107,BPS Kabupaten Bolaang Mongondow Utara
+25,7108,BPS Kabupaten Siau Tagulandang Biaro
+25,7109,BPS Kabupaten Minahasa Tenggara
+25,7110,BPS Kabupaten Bolaang Mongondow Selatan
+25,7111,BPS Kabupaten Bolaang Mongondow Timur
+25,7171,BPS Kota Manado
+25,7172,BPS Kota Bitung
+25,7173,BPS Kota Tomohon
+25,7174,BPS Kota Kotamobagu
+26,7200,BPS Provinsi Sulawesi Tengah
+26,7201,BPS Kabupaten Banggai Kepulauan
+26,7202,BPS Kabupaten Banggai
+26,7203,BPS Kabupaten Morowali
+26,7204,BPS Kabupaten Poso
+26,7205,BPS Kabupaten Donggala
+26,7206,BPS Kabupaten Toli-toli
+26,7207,BPS Kabupaten Buol
+26,7208,BPS Kabupaten Parigi Moutong
+26,7209,BPS Kabupaten Tojo Una-una
+26,7210,BPS Kabupaten Sigi
+26,7211,BPS Kabupaten Banggai Laut
+26,7212,BPS Kabupaten Morowali Utara
+26,7271,BPS Kota Palu
+27,7300,BPS Provinsi Sulawesi Selatan
+27,7301,BPS Kabupaten Kepulauan Selayar
+27,7302,BPS Kabupaten Bulukumba
+27,7303,BPS Kabupaten Bantaeng
+27,7304,BPS Kabupaten Jeneponto
+27,7305,BPS Kabupaten Takalar
+27,7306,BPS Kabupaten Gowa
+27,7307,BPS Kabupaten Sinjai
+27,7308,BPS Kabupaten Maros
+27,7309,BPS Kabupaten Pangkajene Dan Kepulauan
+27,7310,BPS Kabupaten Barru
+27,7311,BPS Kabupaten Bone
+27,7312,BPS Kabupaten Soppeng
+27,7313,BPS Kabupaten Wajo
+27,7314,BPS Kabupaten Sidenreng Rappang
+27,7315,BPS Kabupaten Pinrang
+27,7316,BPS Kabupaten Enrekang
+27,7317,BPS Kabupaten Luwu
+27,7318,BPS Kabupaten Tana Toraja
+27,7322,BPS Kabupaten Luwu Utara
+27,7325,BPS Kabupaten Luwu Timur
+27,7326,BPS Kabupaten Toraja Utara
+27,7371,BPS Kota Makassar
+27,7372,BPS Kota Parepare
+27,7373,BPS Kota Palopo
+28,7400,BPS Provinsi Sulawesi Tenggara
+28,7401,BPS Kabupaten Buton
+28,7402,BPS Kabupaten Muna
+28,7403,BPS Kabupaten Konawe
+28,7404,BPS Kabupaten Kolaka
+28,7405,BPS Kabupaten Konawe Selatan
+28,7406,BPS Kabupaten Bombana
+28,7407,BPS Kabupaten Wakatobi
+28,7408,BPS Kabupaten Kolaka Utara
+28,7409,BPS Kabupaten Buton Utara
+28,7410,BPS Kabupaten Konawe Utara
+28,7411,BPS Kabupaten Kolaka Timur
+28,7412,BPS Kabupaten Konawe Kepulauan
+28,7413,BPS Kabupaten Muna Barat
+28,7414,BPS Kabupaten Buton Tengah
+28,7415,BPS Kabupaten Buton Selatan
+28,7471,BPS Kota Kendari
+28,7472,BPS Kota Baubau
+29,7500,BPS Provinsi Gorontalo
+29,7501,BPS Kabupaten Boalemo
+29,7502,BPS Kabupaten Gorontalo
+29,7503,BPS Kabupaten Pohuwato
+29,7504,BPS Kabupaten Bone Bolango
+29,7505,BPS Kabupaten Gorontalo Utara
+29,7571,BPS Kota Gorontalo
+30,7600,BPS Provinsi Sulawesi Barat
+30,7601,BPS Kabupaten Majene
+30,7602,BPS Kabupaten Polewali Mandar
+30,7603,BPS Kabupaten Mamasa
+30,7604,BPS Kabupaten Mamuju
+30,7605,BPS Kabupaten Pasangkayu
+30,7606,BPS Kabupaten Mamuju Tengah
+31,8100,BPS Provinsi Maluku
+31,8101,BPS Kabupaten Kepulauan Tanimbar
+31,8102,BPS Kabupaten Maluku Tenggara
+31,8103,BPS Kabupaten Maluku Tengah
+31,8104,BPS Kabupaten Buru
+31,8105,BPS Kabupaten Kepulauan Aru
+31,8106,BPS Kabupaten Seram Bagian Barat
+31,8107,BPS Kabupaten Seram Bagian Timur
+31,8108,BPS Kabupaten Maluku Barat Daya
+31,8109,BPS Kabupaten Buru Selatan
+31,8171,BPS Kota Ambon
+31,8172,BPS Kota Tual
+32,8200,BPS Provinsi Maluku Utara
+32,8201,BPS Kabupaten Halmahera Barat
+32,8202,BPS Kabupaten Halmahera Tengah
+32,8203,BPS Kabupaten Kepulauan Sula
+32,8204,BPS Kabupaten Halmahera Selatan
+32,8205,BPS Kabupaten Halmahera Utara
+32,8206,BPS Kabupaten Halmahera Timur
+32,8207,BPS Kabupaten Pulau Morotai
+32,8208,BPS Kabupaten Pulau Taliabu
+32,8271,BPS Kota Ternate
+32,8272,BPS Kota Tidore Kepulauan
+33,9100,BPS Provinsi Papua Barat
+33,9101,BPS Kabupaten Fakfak
+33,9102,BPS Kabupaten Kaimana
+33,9103,BPS Kabupaten Teluk Wondama
+33,9104,BPS Kabupaten Teluk Bintuni
+33,9105,BPS Kabupaten Manokwari
+33,9106,BPS Kabupaten Sorong Selatan
+33,9107,BPS Kabupaten Sorong
+33,9108,BPS Kabupaten Raja Ampat
+33,9109,BPS Kabupaten Tambrauw
+33,9110,BPS Kabupaten Maybrat
+33,9111,BPS Kabupaten Manokwari Selatan
+33,9112,BPS Kabupaten Pegunungan Arfak
+33,9171,BPS Kota Sorong
+34,9400,BPS Provinsi Papua
+34,9401,BPS Kabupaten Merauke
+34,9402,BPS Kabupaten Jayawijaya
+34,9403,BPS Kabupaten Jayapura
+34,9404,BPS Kabupaten Nabire
+34,9408,BPS Kabupaten Kepulauan Yapen
+34,9409,BPS Kabupaten Biak Numfor
+34,9410,BPS Kabupaten Paniai
+34,9411,BPS Kabupaten Puncak Jaya
+34,9412,BPS Kabupaten Mimika
+34,9413,BPS Kabupaten Boven Digoel
+34,9414,BPS Kabupaten Mappi
+34,9415,BPS Kabupaten Asmat
+34,9416,BPS Kabupaten Yahukimo
+34,9417,BPS Kabupaten Pegunungan Bintang
+34,9418,BPS Kabupaten Tolikara
+34,9419,BPS Kabupaten Sarmi
+34,9420,BPS Kabupaten Keerom
+34,9426,BPS Kabupaten Waropen
+34,9427,BPS Kabupaten Supiori
+34,9428,BPS Kabupaten Mamberamo Raya
+34,9429,BPS Kabupaten Nduga
+34,9430,BPS Kabupaten Lanny Jaya
+34,9431,BPS Kabupaten Mamberamo Tengah
+34,9432,BPS Kabupaten Yalimo
+34,9433,BPS Kabupaten Puncak
+34,9434,BPS Kabupaten Dogiyai
+34,9435,BPS Kabupaten Intan Jaya
+34,9436,BPS Kabupaten Deiyai
+34,9471,BPS Kota Jayapura

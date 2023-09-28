@@ -15,12 +15,24 @@ public class FormasiMapper {
 
     public static FormasiDto mapToFormasiDto(Formasi formasi) {
         return FormasiDto.builder()
+                .id(formasi.getId())
+                .provinsi(formasi.getProvinsi())
+                .kodeSatker(formasi.getKodeSatker())
+                .namaSatuanKerja(formasi.getNamaSatuanKerja())
+                .kuotaKs(formasi.getKuotaKs())
+                .kuotaSt(formasi.getKuotaSt())
                 // Anda dapat menambahkan properti yang sesuai di sini
                 .build();
     }
 
     public static Formasi mapToFormasi(FormasiDto formasiDto) {
         return Formasi.builder()
+                .id(formasiDto.getId())
+                .provinsi(formasiDto.getProvinsi())
+                .kodeSatker(formasiDto.getKodeSatker())
+                .namaSatuanKerja(formasiDto.getNamaSatuanKerja())
+                .kuotaKs(formasiDto.getKuotaKs())
+                .kuotaSt(formasiDto.getKuotaSt())
                 // Anda dapat menambahkan properti yang sesuai di sini
                 .build();
     }

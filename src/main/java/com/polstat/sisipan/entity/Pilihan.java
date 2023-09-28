@@ -18,6 +18,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -38,20 +40,36 @@ public class Pilihan {
 
     @OneToOne
     @JoinColumn(name = "mahasiswa_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private Mahasiswa mahasiswa; // Setiap pilihan terkait dengan satu mahasiswa
 
     @ManyToOne
     @JoinColumn(name = "pilihan_1", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Formasi pilihan1;
 
     @ManyToOne
     @JoinColumn(name = "pilihan_2", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Formasi pilihan2;
 
     @ManyToOne
     @JoinColumn(name = "pilihan_3", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Formasi pilihan3;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "pilihan_sistem", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    private Formasi pilihanSistem;
+
+    @Column
+    private float indeksPilihan1;
+    @Column
+    private float indeksPilihan2;
+    @Column
+    private float indeksPilihan3;
+
+    @Column
     private String hasil;
 }

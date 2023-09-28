@@ -18,6 +18,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 /**
  *
@@ -38,9 +40,10 @@ public class User {
     
     @OneToOne(cascade = CascadeType.ALL, optional = true)
     @JoinColumn(name = "id_mhs", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
     private Mahasiswa mahasiswa;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)

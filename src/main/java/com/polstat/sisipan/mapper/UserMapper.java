@@ -15,13 +15,19 @@ public class UserMapper {
 
     public static UserDto mapToUserDto(User user) {
         return UserDto.builder()
-                // Anda dapat menambahkan properti yang sesuai di sini
+                .id(user.getId())
+                .mahasiswa(user.getMahasiswa())
+                .email(user.getEmail()) 
+                .password(user.getPassword()) 
                 .build();
     }
 
     public static User mapToUser(UserDto userDto) {
         return User.builder()
-                // Anda dapat menambahkan properti yang sesuai di sini
+                .id(userDto.getId())
+                .mahasiswa(userDto.getMahasiswa())
+                .email(userDto.getEmail()) 
+                .password(userDto.getPassword()) 
                 .build();
     }
 }

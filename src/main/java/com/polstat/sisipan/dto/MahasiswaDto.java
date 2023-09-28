@@ -4,8 +4,7 @@
  */
 package com.polstat.sisipan.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
+import com.polstat.sisipan.entity.Provinsi;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,8 +21,9 @@ import lombok.NoArgsConstructor;
 public class MahasiswaDto {
 
     private Long id;
-    private String memberID;
+    private String nim;
     private String name;
-    private String address;
-    private String phoneNumber;
+    private String prodi;
+    private Provinsi provinsi;
+    private Float ipk;
 }

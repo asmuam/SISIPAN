@@ -2,7 +2,7 @@ type User {
   id: ID
   email: String
   password: String
-  mahasiswa: Mahasiswa 
+  mahasiswa: Mahasiswa
 }
 
 type Mahasiswa {
@@ -19,6 +19,29 @@ type Provinsi {
   kodeProvinsi: String
   namaProvinsi: String
 }
+
+type Formasi {
+  id: ID
+  provinsi: Provinsi
+  kodeSatker: String
+  namaSatuanKerja: String
+  kuotaSt: int
+  kuotaKs: int
+}
+
+type Pilihan {
+  id: ID
+  mahasiswa: Mahasiswa
+  pilihan1: Formasi
+  pilihan2: Formasi
+  pilihan3: Formasi
+  pilihanSistem: Formasi
+  indeksPilihan1: float
+  indeksPilihan2: float
+  indeksPilihan3: float
+  hasil: String
+}
+
 type Query {
   users: [User]
   userById(id: ID!): User

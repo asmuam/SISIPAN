@@ -5,7 +5,6 @@
 package com.polstat.sisipan.service;
 
 import com.polstat.sisipan.dto.UserDto;
-import com.polstat.sisipan.entity.User;
 import java.util.List;
 
 /**
@@ -19,9 +18,7 @@ public interface UserService {
 
     public UserDto getUser(UserDto userDto);
 
-    public UserDto createUser(UserDto userDto);
+    public UserDto saveUser(UserDto userDto);
 
-    public UserDto updateUser(UserDto userDto);
-
-    public UserDto delete(Long id);
+    public void delete(UserDto userDto);
 }

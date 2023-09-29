@@ -25,35 +25,29 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto getUser(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+        User user = userRepository.getReferenceById(id);
+        return (UserMapper.mapToUserDto(user));
     }
 
 
     @Override
     public UserDto getUser(UserDto userDto) {
-        // TODO Auto-generated method stub
         User user = userRepository.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
         return (UserMapper.mapToUserDto(user));
     }
 
     @Override
-    public UserDto createUser(UserDto userDto) {
-        // TODO Auto-generated method stub
+    public UserDto saveUser(UserDto userDto) {
         User user = userRepository.save(UserMapper.mapToUser(userDto));
         return (UserMapper.mapToUserDto(user));
     }
 
     @Override
-    public UserDto updateUser(UserDto userDto) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
-    }
+    public void delete(UserDto userDto) {
+        User userToDelete = userRepository.findById(userDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
 
-    @Override
-    public UserDto delete(Long id) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+        userRepository.delete(userToDelete);
     }
 
     @Override

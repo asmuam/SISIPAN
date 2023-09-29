@@ -10,13 +10,8 @@ package com.polstat.sisipan.repository;
  */
 
 import com.polstat.sisipan.entity.Pilihan;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "pilihan", path = "pilihan")
-public interface PilihanRepository extends PagingAndSortingRepository<Pilihan, Long>, CrudRepository<Pilihan, Long>, JpaRepository<Pilihan, Long> {
+public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
 }

@@ -1,0 +1,8 @@
+
+POST http://localhost:8080/user
+Content-Type: application/json
+
+{
+    "email": "222111846@stis.ac.id",
+    "password": "222111846"
+}

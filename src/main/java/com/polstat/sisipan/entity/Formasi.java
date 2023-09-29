@@ -48,9 +48,9 @@ public class Formasi {
     @Column(nullable = false)
     private String namaSatuanKerja;
     
-    @Column(nullable = false, columnDefinition = "int default 0")
+    @Column(columnDefinition = "int default 0")
     private int kuotaSt;
     
-    @Column(nullable = false, columnDefinition = "int default 0")
+    @Column(columnDefinition = "int default 0")
     private int kuotaKs;
 }

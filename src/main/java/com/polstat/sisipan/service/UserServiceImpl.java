@@ -4,8 +4,12 @@
  */
 package com.polstat.sisipan.service;
 
+import com.polstat.sisipan.dto.UserDto;
 import com.polstat.sisipan.entity.User;
+import com.polstat.sisipan.mapper.UserMapper;
 import com.polstat.sisipan.repository.UserRepository;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,29 +18,51 @@ import org.springframework.stereotype.Service;
  * @author asmuammal
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
-     private UserRepository userRepository;
+    private UserRepository userRepository;
 
     @Override
-    public User getUser(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UserDto getUser(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getUser'");
+    }
+
+
+    @Override
+    public UserDto getUser(UserDto userDto) {
+        // TODO Auto-generated method stub
+        User user = userRepository.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
+        return (UserMapper.mapToUserDto(user));
     }
 
     @Override
-    public User createUser(String email, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UserDto createUser(UserDto userDto) {
+        // TODO Auto-generated method stub
+        User user = userRepository.save(UserMapper.mapToUser(userDto));
+        return (UserMapper.mapToUserDto(user));
     }
 
     @Override
-    public void updateUser(String email, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UserDto updateUser(UserDto userDto) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'updateUser'");
     }
 
     @Override
-    public void delete(Long id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public UserDto delete(Long id) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'delete'");
+    }
+
+    @Override
+    public List<UserDto> getUsers() {
+        List<User> users = userRepository.findAll();
+        List<UserDto> userDtos = users.stream()
+                .map((product) -> (UserMapper.mapToUserDto(product)))
+                .collect(Collectors.toList());
+        return userDtos;
     }
 
 }

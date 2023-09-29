@@ -4,15 +4,24 @@
  */
 package com.polstat.sisipan.service;
 
+import com.polstat.sisipan.dto.UserDto;
 import com.polstat.sisipan.entity.User;
+import java.util.List;
 
 /**
  *
  * @author asmuammal
  */
 public interface UserService {
-    public User getUser(Long id);
-    public User createUser(String email, String password);
-    public void updateUser(String email, String password) ;
-    public void delete(Long id);
+    public UserDto getUser(Long id);
+
+    public List<UserDto> getUsers();
+
+    public UserDto getUser(UserDto userDto);
+
+    public UserDto createUser(UserDto userDto);
+
+    public UserDto updateUser(UserDto userDto);
+
+    public UserDto delete(Long id);
 }

@@ -1,0 +1,8 @@
+
+POST http://localhost:8080/formasi
+Content-Type: application/json
+
+{
+    "kodeSatker": "0000",
+    "namaSatuanKerja": "Kementerian Keuangan"
+}

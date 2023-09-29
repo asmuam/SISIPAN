@@ -1,0 +1,34 @@
+type User {
+  id: ID
+  email: String
+  password: String
+  mahasiswa: Mahasiswa 
+}
+
+type Mahasiswa {
+  id: ID
+  nim: String
+  name: String
+  prodi: String
+  provinsi: Provinsi
+  ipk: String
+}
+
+type Provinsi {
+  id: ID
+  kodeProvinsi: String
+  namaProvinsi: String
+}
+type Query {
+  users: [User]
+  userById(id: ID!): User
+  profileById(id: ID!): User
+}
+
+type Mutation {
+  register(email: String!, password: String!): User
+  login(email: String!, password: String!): User
+  updateUser(id: ID!, email: String, password: String): User
+  changePassword(id: ID!, oldPassword: String!, newPassword: String!): User
+  deleteUser(id: ID!): User
+}

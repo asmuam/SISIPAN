@@ -10,13 +10,8 @@ package com.polstat.sisipan.repository;
  */
 
 import com.polstat.sisipan.entity.Formasi;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "formasi", path = "formasi")
-public interface FormasiRepository extends PagingAndSortingRepository<Formasi, Long>, CrudRepository<Formasi, Long>, JpaRepository<Formasi, Long> {
+public interface FormasiRepository extends JpaRepository<Formasi, Long> {
 }

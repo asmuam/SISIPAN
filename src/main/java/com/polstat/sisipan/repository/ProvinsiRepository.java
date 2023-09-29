@@ -11,10 +11,7 @@ package com.polstat.sisipan.repository;
 
 import com.polstat.sisipan.entity.Provinsi;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "provinsi", path = "provinsi")
-public interface ProvinsiRepository extends PagingAndSortingRepository<Provinsi, Long>, CrudRepository<Provinsi, Long>, JpaRepository<Provinsi, Long> {
+public interface ProvinsiRepository extends JpaRepository<Provinsi, Long> {
 }

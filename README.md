@@ -11,9 +11,15 @@
 
 ## Recent Update <a> name = "update"</a>
 
+---9/30/2023
+- updating schema
+- add query and mutation as in schema for MahasiswaGraphqlController
+- add MahasiswaGraphqlController related service
+---
 - add schema.graphqls
 - add query and mutation as in schema for UserGraphqlController
 - add UserGraphqlController related service
+
 ## About <a name = "about"></a>
 
 Sistem Simulasi Penempatan (SISIPAN) merupakan sistem yang digunakan mahasiswa untuk melakukan simulasi penempatan sehingga peluang lolos mahasiswa di pilihan yang diinginkan dapat lebih besar

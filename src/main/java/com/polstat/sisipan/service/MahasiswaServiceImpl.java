@@ -17,50 +17,57 @@ import com.polstat.sisipan.repository.MahasiswaRepository;
  *
  * @author asmuammal
  */
-
 @Service
 public class MahasiswaServiceImpl implements MahasiswaService {
 
     @Autowired
-    private MahasiswaRepository memberRepository;
-
-    @Override
-    public MahasiswaDto createMahasiswa(MahasiswaDto memberDto) {
-        Mahasiswa member = MahasiswaMapper.mapToMahasiswa(memberDto);
-        Mahasiswa savedMember = memberRepository.save(member);
-        return MahasiswaMapper.mapToMahasiswaDto(savedMember);
-    }
+    private MahasiswaRepository mahasiswaRepository;
 
     @Override
     public List<MahasiswaDto> getMahasiswa() {
-        List<Mahasiswa> members = (List<Mahasiswa>) memberRepository.findAll();
-        List<MahasiswaDto> memberDtos = members.stream()
+        List<Mahasiswa> mahasiswa = (List<Mahasiswa>) mahasiswaRepository.findAll();
+        List<MahasiswaDto> mahasiswaDtos = mahasiswa.stream()
                 .map((product) -> (MahasiswaMapper.mapToMahasiswaDto(product)))
                 .collect(Collectors.toList());
-        return memberDtos;
+        return mahasiswaDtos;
     }
 
     @Override
-    public MahasiswaDto updateMahasiswa(MahasiswaDto memberDto) {
-        Mahasiswa existingMember = memberRepository.findById(memberDto.getId())
+    public MahasiswaDto updateMahasiswa(MahasiswaDto mahasiswaDto) {
+        Mahasiswa existingMahasiswa = mahasiswaRepository.findById(mahasiswaDto.getId())
                 .orElseThrow(() -> new IllegalArgumentException("Member not found"));
 
-        Mahasiswa updatedMember = memberRepository.save(existingMember);
-        return MahasiswaMapper.mapToMahasiswaDto(updatedMember);
-    }
-
-    @Override
-    public void deleteMahasiswa(MahasiswaDto memberDto) {
-        Mahasiswa memberToDelete = memberRepository.findById(memberDto.getId())
-                .orElseThrow(() -> new IllegalArgumentException("Member not found"));
-
-        memberRepository.delete(memberToDelete);
+        Mahasiswa updatedMahasiswa = mahasiswaRepository.save(existingMahasiswa);
+        return MahasiswaMapper.mapToMahasiswaDto(updatedMahasiswa);
     }
 
     @Override
     public MahasiswaDto getMahasiswa(Long id) {
-        Mahasiswa member = memberRepository.getReferenceById(id);
-        return MahasiswaMapper.mapToMahasiswaDto(member);
+        Mahasiswa mahasiswa = mahasiswaRepository.getReferenceById(id);
+        return MahasiswaMapper.mapToMahasiswaDto(mahasiswa);
+    }
+
+    @Override
+    public List<MahasiswaDto> getMahasiswaByIdProvinsi(Long id) {
+        List<Mahasiswa> mahasiswa =  mahasiswaRepository.findByProvinsiId(id);
+        List<MahasiswaDto> mahasiswaDtos = mahasiswa.stream()
+                .map((product) -> (MahasiswaMapper.mapToMahasiswaDto(product)))
+                .collect(Collectors.toList());
+        return mahasiswaDtos;
+    }
+
+    @Override
+    public MahasiswaDto saveMahasiswa(MahasiswaDto mahasiswaDto) {
+        Mahasiswa mahasiswa = MahasiswaMapper.mapToMahasiswa(mahasiswaDto);
+        Mahasiswa savedMember = mahasiswaRepository.save(mahasiswa);
+        return MahasiswaMapper.mapToMahasiswaDto(savedMember);
+    }
+
+    @Override
+    public void delete(MahasiswaDto mahasiswaDto) {
+        Mahasiswa mahasiswaToDelete = mahasiswaRepository.findById(mahasiswaDto.getId())
+                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+        mahasiswaRepository.delete(mahasiswaToDelete);
     }
 
 }

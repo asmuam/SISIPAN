@@ -5,6 +5,7 @@
 package com.polstat.sisipan.service;
 
 import com.polstat.sisipan.dto.MahasiswaDto;
+import com.polstat.sisipan.dto.UserDto;
 import java.util.List;
 
 /**
@@ -14,13 +15,15 @@ import java.util.List;
 
 public interface MahasiswaService {
 
-    public MahasiswaDto createMahasiswa(MahasiswaDto memberDto);
-
     public List<MahasiswaDto> getMahasiswa();
 
     public MahasiswaDto updateMahasiswa(MahasiswaDto memberDto);
 
-    public void deleteMahasiswa(MahasiswaDto memberDto);
-
     public MahasiswaDto getMahasiswa(Long id);
+
+    public List<MahasiswaDto> getMahasiswaByIdProvinsi(Long idProvinsi);
+
+    public MahasiswaDto saveMahasiswa(MahasiswaDto mahasiswaDto);
+
+    public void delete(MahasiswaDto mahasiswaDto);
 }

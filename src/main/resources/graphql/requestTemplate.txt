@@ -1,0 +1,144 @@
+query user{ 
+  # Daftar user
+  users {
+    id
+    email
+  }
+  # Detail user by Id
+  userById(id: "1") {
+    id
+    email
+  }
+}
+
+mutation user {
+  # Registrasi user
+  register(email: "user1@example.com", password: "password123") {
+    id
+    email
+  }
+  
+  # Login user
+  login(email: "user1@example.com", password: "password123") {
+    id
+    email
+  }
+  
+  # Memperbarui informasi user
+  updateUser(id: "1", email: "newemail@example.com", password: "password123") {
+    id
+    email
+  }
+  
+  # Mengganti password user
+  changePassword(id: "1", oldPassword: "password123", newPassword: "newpass") {
+    id
+    email
+  }
+  
+  # Menghapus user
+  deleteUser(id: "1") {
+    id
+    email
+  }
+}
+
+query mahasiswa{
+# daftar mahasiswa
+  mahasiswa {
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+  }
+
+   # informasi mahasiswa by ID
+ mahasiswaById(id: 1) {
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+  }
+
+    # daftar mahasiswa berdasarkan idprovinsi
+mahasiswaByIdProvinsi(idProvinsi: 1) {
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+  }
+}
+
+mutation Mahasiswa{
+    # menambah data mahasiswa
+  addMahasiswa(
+    nim: "NIM123",
+    name: "Nama Mahasiswa",
+    prodi: "Program Studi",
+    ipk: 3.5,
+    id_prov: 1
+  ) {
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+  }
+
+    #edit data mahasiswa
+updateMahasiswa(
+    id: 1,
+    nim: "NIM123",
+    name: "Nama Mahasiswa Baru",
+    prodi: "Program Studi Baru",
+    ipk: 3.7,
+    id_prov: 2
+  ) {
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+  }
+    
+    # hapus data mahasiswa by ID
+    deleteMahasiswa(id: 1){
+    id
+    nim
+    name
+    prodi
+    ipk
+    provinsi {
+      id
+      kodeProvinsi
+      namaProvinsi
+    }
+}

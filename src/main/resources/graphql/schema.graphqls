@@ -11,7 +11,7 @@ type Mahasiswa {
   name: String
   prodi: String
   provinsi: Provinsi
-  ipk: String
+  ipk: Float
 }
 
 type Provinsi {
@@ -25,8 +25,8 @@ type Formasi {
   provinsi: Provinsi
   kodeSatker: String
   namaSatuanKerja: String
-  kuotaSt: int
-  kuotaKs: int
+  kuotaSt: Int
+  kuotaKs: Int
 }
 
 type Pilihan {
@@ -36,22 +36,94 @@ type Pilihan {
   pilihan2: Formasi
   pilihan3: Formasi
   pilihanSistem: Formasi
-  indeksPilihan1: float
-  indeksPilihan2: float
-  indeksPilihan3: float
+  indeksPilihan1: Float
+  indeksPilihan2: Float
+  indeksPilihan3: Float
   hasil: String
 }
 
 type Query {
   users: [User]
   userById(id: ID!): User
-  profileById(id: ID!): User
+  formasi: [Formasi]
+  formasiByIdProvinsi(idProvinsi: ID!): [Formasi]
+  mahasiswa: [Mahasiswa]
+  mahasiswaByIdProvinsi(idProvinsi: ID!): [Mahasiswa]
+  mahasiswaById(id: ID!): Mahasiswa
+  pilihan: [Pilihan]
+  pilihanByIdMahasiswa(idMahasiswa: ID!): Pilihan
+  pilihanByIdFormasi(idFormasi: ID!): [Pilihan]
 }
 
 type Mutation {
   register(email: String!, password: String!): User
   login(email: String!, password: String!): User
-  updateUser(id: ID!, email: String, password: String): User
+  updateUser(id: ID!, email: String): User
   changePassword(id: ID!, oldPassword: String!, newPassword: String!): User
   deleteUser(id: ID!): User
+
+  addMahasiswa(
+    nim: String
+    name: String
+    prodi: String
+    provinsiId: ID
+    ipk: Float
+  ): Mahasiswa
+
+  updateMahasiswa(
+    id: ID!
+    nim: String
+    name: String
+    prodi: String
+    provinsiId: ID
+    ipk: Float
+  ): Mahasiswa
+
+  deleteMahasiswa(id: ID!): Mahasiswa
+
+  addFormasi(
+    provinsiId: ID
+    kodeSatker: String!
+    namaSatuanKerja: String!
+    kuotaSt: Int
+    kuotaKs: Int
+  ): Formasi
+
+  updateFormasi(
+    id: ID!
+    provinsiId: ID
+    kodeSatker: String!
+    namaSatuanKerja: String!
+    kuotaSt: Int
+    kuotaKs: Int
+  ): Formasi
+
+  deleteFormasi(id: ID!): Formasi
+
+  addPilihan(
+    mahasiswaId: ID!
+    pilihan1: ID!
+    pilihan2: ID
+    pilihan3: ID
+    pilihanSistem: ID
+    indeksPilihan1: Float
+    indeksPilihan2: Float
+    indeksPilihan3: Float
+    hasil: String
+  ): Pilihan
+
+  updatePilihan(
+    id: ID!
+    mahasiswaId: ID!
+    pilihan1: ID
+    pilihan2: ID
+    pilihan3: ID
+    pilihanSistem: ID
+    indeksPilihan1: Float
+    indeksPilihan2: Float
+    indeksPilihan3: Float
+    hasil: String
+  ): Pilihan
+
+  deletePilihan(id: ID!): Pilihan
 }

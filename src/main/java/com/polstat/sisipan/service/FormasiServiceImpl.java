@@ -4,10 +4,13 @@
  */
 package com.polstat.sisipan.service;
 
+import org.springframework.stereotype.Service;
+
 /**
  *
  * @author asmuammal
  */
+@Service
 public class FormasiServiceImpl implements FormasiService{
     
 }

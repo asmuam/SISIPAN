@@ -11,7 +11,7 @@
 
 ## Recent Update <a> name = "update"</a>
 
----9/30/2023
+9/30/2023
 - updating schema
 - add query and mutation as in schema for MahasiswaGraphqlController
 - add MahasiswaGraphqlController related service

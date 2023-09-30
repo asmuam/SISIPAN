@@ -53,6 +53,8 @@ type Query {
   pilihan: [Pilihan]
   pilihanByIdMahasiswa(idMahasiswa: ID!): Pilihan
   pilihanByIdFormasi(idFormasi: ID!): [Pilihan]
+provinsi:[Provinsi]
+provinsiById(id:ID!): Provinsi
 }
 
 type Mutation {
@@ -126,4 +128,15 @@ type Mutation {
   ): Pilihan
 
   deletePilihan(id: ID!): Pilihan
+
+addProvinsi(kodeProvinsi: String
+            namaProvinsi: String
+):Provinsi
+updateProvinsi(
+idProvinsi:ID!
+kodeProvinsi: String
+            namaProvinsi: String
+):Provinsi
+  deleteProvinsi(idProvinsi: ID!): Provinsi
+
 }

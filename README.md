@@ -15,6 +15,7 @@
 - updating schema
 - add query and mutation as in schema for MahasiswaGraphqlController
 - add MahasiswaGraphqlController related service
+- add ProvinsiGraphqlController query and mutation as in schema
 ---
 - add schema.graphqls
 - add query and mutation as in schema for UserGraphqlController

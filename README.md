@@ -2,12 +2,19 @@
 
 ## Table of Contents
 
+- [Features](#features)
 - [Recent_Updates](#update)
 - [About](#about)
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Contributing](../CONTRIBUTING.md)
 
+
+## Features <a> name = "features"</a>
+- CRUD user
+- CRUD mahasiswa
+- CRUD provinsi
+- CRUD formasi
 
 ## Recent Update <a> name = "update"</a>
 

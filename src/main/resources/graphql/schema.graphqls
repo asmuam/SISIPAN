@@ -5,6 +5,15 @@ type User {
   mahasiswa: Mahasiswa
 }
 
+type AuthRequest{
+    email: String
+  password: String
+}
+type AuthResponse{
+    email: String
+  accessToken: String
+}
+
 type Mahasiswa {
   id: ID
   nim: String
@@ -53,13 +62,13 @@ type Query {
   pilihan: [Pilihan]
   pilihanByIdMahasiswa(idMahasiswa: ID!): Pilihan
   pilihanByIdFormasi(idFormasi: ID!): [Pilihan]
-provinsi:[Provinsi]
-provinsiById(id:ID!): Provinsi
+  provinsi: [Provinsi]
+  provinsiById(id: ID!): Provinsi
 }
 
 type Mutation {
+  login(email: String!, password: String!): AuthResponse
   register(email: String!, password: String!): User
-  login(email: String!, password: String!): User
   updateUser(id: ID!, email: String): User
   changePassword(id: ID!, oldPassword: String!, newPassword: String!): User
   deleteUser(id: ID!): User
@@ -100,7 +109,7 @@ type Mutation {
     kuotaKs: Int
   ): Formasi
 
-  deleteFormasi(id: ID!): Formasi
+  deleteFormasi(idFormasi: ID!): Formasi
 
   addPilihan(
     mahasiswaId: ID!
@@ -129,14 +138,13 @@ type Mutation {
 
   deletePilihan(id: ID!): Pilihan
 
-addProvinsi(kodeProvinsi: String
-            namaProvinsi: String
-):Provinsi
-updateProvinsi(
-idProvinsi:ID!
-kodeProvinsi: String
-            namaProvinsi: String
-):Provinsi
-  deleteProvinsi(idProvinsi: ID!): Provinsi
+  addProvinsi(kodeProvinsi: String, namaProvinsi: String): Provinsi
 
+  updateProvinsi(
+    idProvinsi: ID!
+    kodeProvinsi: String
+    namaProvinsi: String
+  ): Provinsi
+
+  deleteProvinsi(idProvinsi: ID!): Provinsi
 }

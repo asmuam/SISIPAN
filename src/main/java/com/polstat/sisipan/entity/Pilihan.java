@@ -13,11 +13,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -69,7 +71,11 @@ public class Pilihan {
     private float indeksPilihan2;
     @Column
     private float indeksPilihan3;
-
+    @Column
+    @Formula("(SELECT m.ipk FROM mahasiswa m WHERE m.id = mahasiswa_id)")
+    private Float ipk;
+    @Column
+    private Date waktuMemilih;
     @Column
     private String hasil;
 }

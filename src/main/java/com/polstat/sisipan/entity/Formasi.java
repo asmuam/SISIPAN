@@ -53,4 +53,10 @@ public class Formasi {
     
     @Column(columnDefinition = "int default 0")
     private int kuotaKs;
-}
+    
+    @Column(nullable = false)
+    private Integer kuotaKsTersedia;
+    
+    @Column(nullable = false)
+    private Integer kuotaStTersedia;
+    }

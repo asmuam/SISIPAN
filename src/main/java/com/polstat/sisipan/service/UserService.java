@@ -12,13 +12,16 @@ import java.util.List;
  * @author asmuammal
  */
 public interface UserService {
+
     public UserDto getUser(Long id);
 
     public List<UserDto> getUsers();
 
-    public UserDto getUser(UserDto userDto);
-
     public UserDto saveUser(UserDto userDto);
 
     public void delete(UserDto userDto);
+
+    public UserDto createUser(UserDto user);
+
+    public UserDto getUserByEmail(String email);
 }

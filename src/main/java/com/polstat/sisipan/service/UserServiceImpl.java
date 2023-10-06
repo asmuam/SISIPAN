@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 /**
  *
@@ -22,6 +23,8 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public UserDto getUser(Long id) {
@@ -29,11 +32,17 @@ public class UserServiceImpl implements UserService {
         return (UserMapper.mapToUserDto(user));
     }
 
+    @Override
+    public UserDto getUserByEmail(String email) {
+        User user = userRepository.findByEmail(email);
+        return UserMapper.mapToUserDto(user);
+    }
 
     @Override
-    public UserDto getUser(UserDto userDto) {
-        User user = userRepository.findByEmailAndPassword(userDto.getEmail(), userDto.getPassword());
-        return (UserMapper.mapToUserDto(user));
+    public UserDto createUser(UserDto userDto) {
+        userDto.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        User user = userRepository.save(UserMapper.mapToUser(userDto));
+        return UserMapper.mapToUserDto(user);
     }
 
     @Override

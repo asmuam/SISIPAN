@@ -8,9 +8,15 @@ package com.polstat.sisipan.repository;
  *
  * @author asmuammal
  */
-
 import com.polstat.sisipan.entity.Formasi;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
+@RepositoryRestResource(collectionResourceRel = "formasi", path = "formasi")
 public interface FormasiRepository extends JpaRepository<Formasi, Long> {
+
+    public List<Formasi> findByKuotaStTersediaGreaterThan(int i);
+
+    public List<Formasi> findByKuotaKsTersediaGreaterThan(int i);
 }

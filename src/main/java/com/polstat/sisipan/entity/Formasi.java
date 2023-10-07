@@ -41,22 +41,28 @@ public class Formasi {
     @JoinColumn(name = "provinsi_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Provinsi provinsi;
-    
+
     @Column(nullable = false)
     private String kodeSatker;
-    
+
     @Column(nullable = false)
     private String namaSatuanKerja;
-    
+
     @Column(columnDefinition = "int default 0")
     private int kuotaSt;
-    
+
     @Column(columnDefinition = "int default 0")
     private int kuotaKs;
-    
-    @Column(nullable = false)
+
+    @Column(columnDefinition = "int default 0",name = "kuota_d3")
+    private int kuotaD3;
+
+    @Column(nullable = false,name = "kuota_ks_tersedia")
     private Integer kuotaKsTersedia;
-    
-    @Column(nullable = false)
+
+    @Column(nullable = false,name = "kuota_st_tersedia")
     private Integer kuotaStTersedia;
-    }
+    
+    @Column(nullable = false,name = "kuota_d3_tersedia")
+    private Integer kuotaD3Tersedia;
+}

@@ -4,27 +4,37 @@
  */
 package com.polstat.sisipan.dto;
 
-import com.polstat.sisipan.entity.Mahasiswa;
-import com.polstat.sisipan.entity.Provinsi;
+import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
- * @author asmuammal
+ * @author asmua
  */
+@Getter
+@Setter
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MahasiswaDto {
+public class PilihanDto {
 
     private Long id;
-    private String nim;
-    private String name;
-    private Mahasiswa.Prodi prodi;
-    private Provinsi provinsi;
+    private Long mahasiswaId;
+    private Long pilihan1;
+    private Long pilihan2;
+    private Long pilihan3;
+    private Long pilihanSistem;
+    private Float indeksPilihan1;
+    private Float indeksPilihan2;
+    private Float indeksPilihan3;
     private Float ipk;
+    private Date waktuMemilih;
+    private String hasil;
+
 }

@@ -6,6 +6,8 @@ package com.polstat.sisipan.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -33,18 +35,35 @@ import org.hibernate.annotations.OnDeleteAction;
 @Table(name = "mahasiswa")
 public class Mahasiswa {
 
+    public enum Prodi {
+        D4_KS("DIV-Komputasi Statistik"),
+        D4_ST("DIV-Statistika"),
+        D3_ST("DIII-Statistik");
+
+        private final String label;
+
+        Prodi(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false,unique = true)
+    @Column(nullable = false, unique = true)
     private String nim;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private String prodi;
+    @Enumerated(EnumType.STRING) // Menyimpan nilai enum sebagai string
+    private Prodi prodi;
 
     @ManyToOne
     @JoinColumn(name = "provinsi_id", referencedColumnName = "id")
@@ -53,4 +72,5 @@ public class Mahasiswa {
 
     @Column(nullable = false)
     private Float ipk;
+
 }

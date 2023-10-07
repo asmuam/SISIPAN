@@ -72,7 +72,6 @@ public class Pilihan {
     @Column
     private float indeksPilihan3;
     @Column
-    @Formula("(SELECT m.ipk FROM mahasiswa m WHERE m.id = mahasiswa_id)")
     private Float ipk;
     @Column
     private Date waktuMemilih;

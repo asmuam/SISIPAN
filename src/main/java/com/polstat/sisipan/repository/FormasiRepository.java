@@ -19,4 +19,6 @@ public interface FormasiRepository extends JpaRepository<Formasi, Long> {
     public List<Formasi> findByKuotaStTersediaGreaterThan(int i);
 
     public List<Formasi> findByKuotaKsTersediaGreaterThan(int i);
+
+    public List<Formasi> findByKuotaD3TersediaGreaterThan(int i);
 }

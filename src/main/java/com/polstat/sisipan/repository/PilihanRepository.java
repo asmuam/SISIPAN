@@ -25,4 +25,6 @@ public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
     public List<Pilihan> findByPilihan2(Formasi pilihan2);
 
     public List<Pilihan> findByPilihan1(Formasi pilihan1);
+
+    public Pilihan findByMahasiswaId(Long mahasiswaId);
 }

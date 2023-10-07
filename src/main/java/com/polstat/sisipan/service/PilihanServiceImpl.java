@@ -4,9 +4,18 @@
  */
 package com.polstat.sisipan.service;
 
+import com.polstat.sisipan.entity.Mahasiswa;
 import com.polstat.sisipan.entity.Pilihan;
+import com.polstat.sisipan.repository.FormasiRepository;
+import com.polstat.sisipan.repository.MahasiswaRepository;
+import com.polstat.sisipan.repository.PilihanRepository;
+import jakarta.transaction.Transactional;
+import java.util.Date;
 import java.util.Objects;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.ResponseStatusException;
 
 /**
  *
@@ -15,15 +24,53 @@ import org.springframework.stereotype.Service;
 @Service
 public class PilihanServiceImpl implements PilihanService {
 
+    @Autowired
+    private PilihanRepository pilihanRepository;
+
+    @Autowired
+    private FormasiRepository formasiRepository;
+
+    @Autowired
+    private MahasiswaRepository mahasiswaRepository;
+
     @Override
     public Pilihan getPilihan(Long id) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
+    @Transactional // Menandai metode ini sebagai transaksional
     public Pilihan createPilihan(Long idMahasiswa, Long pilihan1, Long pilihan2, Long pilihan3) {
+        try {
+            // Temukan mahasiswa berdasarkan ID
+            Mahasiswa mahasiswa = mahasiswaRepository.getReferenceById(idMahasiswa);
+            if (mahasiswa == null) {
+                throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Mahasiswa dengan ID tersebut tidak ditemukan.");
+            }
 
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            // Membuat objek Pilihan
+            Pilihan pilihan = Pilihan.builder()
+                    .mahasiswa(mahasiswa)
+                    .pilihan1(formasiRepository.getReferenceById(pilihan1))
+                    .pilihan2(formasiRepository.getReferenceById(pilihan2))
+                    .pilihan3(formasiRepository.getReferenceById(pilihan3))
+                    .ipk(mahasiswa.getIpk())
+                    .waktuMemilih(new Date())
+                    .build();
+
+            // Hitung indeks pilihan dan hasil penempatan
+            float ip1 = getIndeksPilihan1(pilihan);
+            float ip2 = getIndeksPilihan2(pilihan);
+            float ip3 = getIndeksPilihan3(pilihan);
+            pilihan.setIndeksPilihan1(ip1);
+            pilihan.setIndeksPilihan2(ip2);
+            pilihan.setIndeksPilihan3(ip3);
+
+            // Simpan objek "Pilihan"
+            return pilihanRepository.save(pilihan);
+        } catch (ResponseStatusException e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Terjadi kesalahan dalam menambahkan pilihan: " + e.getMessage());
+        }
     }
 
     @Override

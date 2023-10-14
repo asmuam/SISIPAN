@@ -8,6 +8,7 @@ import com.polstat.sisipan.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -35,8 +36,10 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder) throws Exception {
-        AuthenticationManagerBuilder authenticationManagerBuilder = http.getSharedObject(AuthenticationManagerBuilder.class);
+    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder)
+            throws Exception {
+        AuthenticationManagerBuilder authenticationManagerBuilder = http
+                .getSharedObject(AuthenticationManagerBuilder.class);
         authenticationManagerBuilder.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder);
         return authenticationManagerBuilder.build();
     }
@@ -44,12 +47,22 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()
-                .requestMatchers("/login", "/register").permitAll()
-                .anyRequest().permitAll();
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         http.csrf().disable();
-        http.cors().disable();
+        http.authorizeRequests()
+//                .requestMatchers("/register", "/login","/docs/**").permitAll()
+//                .requestMatchers(HttpMethod.POST,"/formasi/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.PATCH,"/formasi/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.PUT,"/formasi/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.DELETE,"/formasi/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.POST,"/mahasiswa/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.PATCH,"/mahasiswa/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.PUT,"/mahasiswa/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.DELETE,"/mahasiswa/**").hasRole("ADMIN")
+//                .requestMatchers("/provinsi/**").hasRole("ADMIN")
+//                .requestMatchers(HttpMethod.POST,"/pilihan/**").hasRole("MAHASISWA")
+//                .anyRequest().authenticated();
+                  .anyRequest().permitAll();
+        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 

@@ -4,7 +4,6 @@
  */
 package com.polstat.sisipan.dto;
 
-import com.polstat.sisipan.entity.Mahasiswa;
 import java.util.Collection;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,13 +23,23 @@ import org.springframework.security.core.userdetails.UserDetails;
 public class UserDto implements UserDetails {
 
     private Long id;
-    private Mahasiswa mahasiswa;
+    private Long mahasiswa;
     private String email;
     private String password;
+    private Collection<? extends GrantedAuthority> authorities;
+
+    public UserDto(String subject, Collection<? extends GrantedAuthority> authorities) {
+        this.email = subject;
+        this.authorities = authorities;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
+    }
+
+    public void setAuthorities(Collection<? extends GrantedAuthority> authorities) {
+        this.authorities = authorities;
     }
 
     @Override

@@ -9,15 +9,14 @@ package com.polstat.sisipan.repository;
  * @author asmuammal
  */
 import com.polstat.sisipan.entity.Mahasiswa;
-import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(collectionResourceRel = "mahasiswa", path = "mahasiswa")
+@Repository
 public interface MahasiswaRepository extends JpaRepository<Mahasiswa, Long> {
 
-    @Query("SELECT m FROM Mahasiswa m WHERE m.provinsi.id = :provinsiId")
-    List<Mahasiswa> findByProvinsiId(@Param("provinsiId") Long provinsiId);
+    @Query("SELECT id FROM Mahasiswa WHERE nim = :nim")
+    Long findIdByNim(@Param("nim") String nim);
 }

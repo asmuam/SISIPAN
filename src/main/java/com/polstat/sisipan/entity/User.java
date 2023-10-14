@@ -37,15 +37,18 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @OneToOne(cascade = CascadeType.ALL, optional = true)
-    @JoinColumn(name = "id_mhs", referencedColumnName = "id")
+    @JoinColumn(name = "id_mhs", referencedColumnName = "id",nullable = true)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Mahasiswa mahasiswa;
-    
+
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
     private String password;
+    
+    @Column(nullable = true, columnDefinition = "VARCHAR(254) DEFAULT 'MAHASISWA'")
+    private String role;
 }

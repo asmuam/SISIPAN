@@ -5,7 +5,6 @@
 package com.polstat.sisipan.dto;
 
 import com.polstat.sisipan.entity.Mahasiswa;
-import com.polstat.sisipan.entity.Provinsi;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +24,6 @@ public class MahasiswaDto {
     private String nim;
     private String name;
     private Mahasiswa.Prodi prodi;
-    private Provinsi provinsi;
+    private Long provinsi;
     private Float ipk;
 }

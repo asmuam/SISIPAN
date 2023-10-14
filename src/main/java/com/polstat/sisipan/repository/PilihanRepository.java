@@ -8,14 +8,15 @@ package com.polstat.sisipan.repository;
  *
  * @author asmuammal
  */
-
 import com.polstat.sisipan.entity.Formasi;
 import com.polstat.sisipan.entity.Pilihan;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(collectionResourceRel = "pilihan", path = "pilihan")
+@Repository
 public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
 
     public List<Pilihan> findByHasil(String pilihan_Sistem);
@@ -26,5 +27,6 @@ public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
 
     public List<Pilihan> findByPilihan1(Formasi pilihan1);
 
-    public Pilihan findByMahasiswaId(Long mahasiswaId);
+    @Query("SELECT p FROM Pilihan p WHERE p.pilihan1 = :formasiId OR p.pilihan2 = :formasiId OR p.pilihan3 = :formasiId")
+    List<Pilihan> findByFormasiId(@Param("formasiId") Long formasiId);
 }

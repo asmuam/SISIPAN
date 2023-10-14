@@ -25,7 +25,7 @@ import lombok.Setter;
 public class PilihanDto {
 
     private Long id;
-    private Long mahasiswaId;
+    private Long mahasiswa;
     private Long pilihan1;
     private Long pilihan2;
     private Long pilihan3;

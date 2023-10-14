@@ -5,11 +5,19 @@
 package com.polstat.sisipan.auth;
 
 import com.polstat.sisipan.dto.UserDto;
+import com.polstat.sisipan.exception.JwtValidationException;
+import com.polstat.sisipan.repository.UserRepository;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,6 +26,8 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.util.ObjectUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 /**
  *
@@ -28,6 +38,8 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
+    @Autowired
+    private UserRepository userRepository;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -36,6 +48,7 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
+
         String token = getAccessToken(request);
         if (!jwtUtil.validateAccessToken(token)) {
             filterChain.doFilter(request, response);
@@ -47,7 +60,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private boolean hasAuthorizationBearer(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-        
+
         if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
             return false;
         }
@@ -62,14 +75,35 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private void setAuthenticationContext(String token, HttpServletRequest request) {
         UserDetails userDetails = getUserDetails(token);
-        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, null);
-        authentication.setDetails(
-                new WebAuthenticationDetailsSource().buildDetails(request));
+
+        UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
+                userDetails.getAuthorities()); // Menggunakan peran dari userDetails
+        authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
     private UserDetails getUserDetails(String token) {
-        String subject = jwtUtil.getSubject(token);
-        return UserDto.builder().email(subject).build();
+        Claims claims = jwtUtil.parseClaims(token);
+        String subject = claims.getSubject();
+
+        Collection<? extends GrantedAuthority> authorities = authoritiesFromClaims(claims);
+
+        UserDetails userDetails = new UserDto(subject, authorities);
+
+        return userDetails;
     }
+
+    private Collection<? extends GrantedAuthority> authoritiesFromClaims(Claims claims) {
+        @SuppressWarnings("unchecked")
+        List<Map<String, String>> authoritiesMap = (List<Map<String, String>>) claims.get("authorities");
+
+        if (authoritiesMap == null) {
+            return Collections.emptyList();
+        }
+
+        return authoritiesMap.stream()
+                .map(authorityData -> new SimpleGrantedAuthority("ROLE_" + authorityData.get("authority")))
+                .collect(Collectors.toList());
+    }
+
 }

@@ -16,13 +16,13 @@ public interface MahasiswaService {
 
     public List<MahasiswaDto> getMahasiswa();
 
-    public MahasiswaDto updateMahasiswa(MahasiswaDto memberDto);
+    public Long getMahasiswaId(String nim);
 
-    public MahasiswaDto getMahasiswa(Long id);
+    public MahasiswaDto updateMahasiswa(MahasiswaDto mahasiswaDto);
 
-    public List<MahasiswaDto> getMahasiswaByIdProvinsi(Long idProvinsi);
+    public MahasiswaDto getMahasiswaById(Long id);
 
-    public MahasiswaDto saveMahasiswa(MahasiswaDto mahasiswaDto);
+    public MahasiswaDto createMahasiswa(MahasiswaDto mahasiswaDto);
 
-    public void delete(MahasiswaDto mahasiswaDto);
+    public boolean deleteMahasiswa(Long id);
 }

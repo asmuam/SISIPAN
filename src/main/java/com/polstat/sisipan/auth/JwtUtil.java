@@ -4,6 +4,7 @@
  */
 package com.polstat.sisipan.auth;
 
+import com.polstat.sisipan.exception.JwtValidationException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -12,11 +13,13 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.GrantedAuthority;
 
 /**
  *
@@ -32,11 +35,14 @@ public class JwtUtil implements Serializable {
 
     public String generateAccessToken(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
+        Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
+                .claim("authorities", authorities) // Menggunakan claim untuk menyimpan peran
                 .setIssuer("Polstat")
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION))
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION * 1000))
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }
@@ -46,26 +52,20 @@ public class JwtUtil implements Serializable {
             Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token);
             return true;
         } catch (ExpiredJwtException ex) {
-            System.out.println("JWT expired" + ex.getMessage());
+            throw new JwtValidationException(ex.getMessage());
         } catch (IllegalArgumentException ex) {
-            System.out.println("Token is null, empty or only whitespace"
-                    + ex.getMessage());
+            throw new JwtValidationException(ex.getMessage());
         } catch (MalformedJwtException ex) {
-            System.out.println("JWT is invalid" + ex);
+            throw new JwtValidationException(ex.getMessage());
         } catch (UnsupportedJwtException ex) {
-            System.out.println("JWT is not supported" + ex);
+            throw new JwtValidationException(ex.getMessage());
         } catch (SignatureException ex) {
-            System.out.println("Signature validation failed");
+            throw new JwtValidationException(ex.getMessage());
         }
-        return false;
+
     }
 
-    public String getSubject(String token) {
-        return parseClaims(token).getSubject();
-    }
-
-
-private Claims parseClaims(String token) {
+    public Claims parseClaims(String token) {
         return Jwts.parser()
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token)

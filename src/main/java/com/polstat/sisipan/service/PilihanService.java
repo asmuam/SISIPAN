@@ -4,7 +4,8 @@
  */
 package com.polstat.sisipan.service;
 
-import com.polstat.sisipan.entity.Pilihan;
+import com.polstat.sisipan.dto.PilihanDto;
+import java.util.List;
 
 /**
  *
@@ -12,19 +13,17 @@ import com.polstat.sisipan.entity.Pilihan;
  */
 public interface PilihanService {
 
-    public Pilihan getPilihan(Long id);
 
-    public Pilihan createPilihan(Long idMahasiswa, Long pilihan1, Long pilihan2, Long pilihan3);
+    public PilihanDto createPilihan(Long idMahasiswa, Long pilihan1, Long pilihan2, Long pilihan3);
 
-    public void updatePilihan(Long idMahasiswa, Long pilihan1, Long pilihan2, Long pilihan3);
+    public float getIndeksByPilihan(PilihanDto pilihan, int indeksPrioritas);
 
-    public void delete(Long id);
+    public List<PilihanDto> getMahasiswaByFormasi(Long formasiId);
 
-    public void deleteByMahasiswaId(Long mahasiswa_id);
+    public List<PilihanDto> getAllPilihan();
 
-    public float getIndeksPilihan1(Pilihan pilihan);
+    public PilihanDto updatePilihan(PilihanDto pilihanDto);
 
-    public float getIndeksPilihan2(Pilihan pilihan);
+    public boolean deletePilihan(Long pilihanId);
 
-    public float getIndeksPilihan3(Pilihan pilihan);
 }

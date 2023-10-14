@@ -4,31 +4,47 @@
  */
 package com.polstat.sisipan.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.polstat.sisipan.dto.UserDto;
+import com.polstat.sisipan.entity.Mahasiswa;
 import com.polstat.sisipan.entity.User;
+import com.polstat.sisipan.repository.MahasiswaRepository;
 
 /**
  *
  * @author asmuammal
  */
+@Component
 public class UserMapper {
 
-    public static UserDto mapToUserDto(User user) {
+    @Autowired
+    MahasiswaRepository mahasiswaRepository;
+
+    public UserDto mapToUserDto(User user) {
+        Long mahasiswaId = user.getMahasiswa() != null ? user.getMahasiswa().getId() : null;
         return UserDto.builder()
                 .id(user.getId())
-                .mahasiswa(user.getMahasiswa())
-                .email(user.getEmail()) 
-                .password(user.getPassword()) 
+                .mahasiswa(mahasiswaId)
+                .email(user.getEmail())
+                .password(user.getPassword())
                 .build();
     }
 
-    public static User mapToUser(UserDto userDto) {
+    public User mapToUser(UserDto userDto) {
         return User.builder()
                 .id(userDto.getId())
-                .mahasiswa(userDto.getMahasiswa())
-                .email(userDto.getEmail()) 
-                .password(userDto.getPassword()) 
+                .mahasiswa(toMahasiswa(userDto.getMahasiswa()))
+                .email(userDto.getEmail())
+                .password(userDto.getPassword())
                 .build();
     }
-}
 
+    Mahasiswa toMahasiswa(Long mahasiswa) {
+        if (mahasiswa != null) {
+            return mahasiswaRepository.getReferenceById(mahasiswa);
+        }
+        return null;
+    }
+}

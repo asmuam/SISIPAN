@@ -20,17 +20,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class PilihanMapper {
 
-    
     @Autowired
     MahasiswaRepository mahasiswaRepository;
-    
+
     @Autowired
     FormasiRepository formasiRepository;
-    
+
     public PilihanDto mapToPilihanDto(Pilihan pilihan) {
         PilihanDto pilihanDto = new PilihanDto();
         pilihanDto.setId(pilihan.getId());
-        pilihanDto.setMahasiswaId(pilihan.getMahasiswa().getId());
+        pilihanDto.setMahasiswa(pilihan.getMahasiswa().getId());
         pilihanDto.setPilihan1(pilihan.getPilihan1() != null ? pilihan.getPilihan1().getId() : null);
         pilihanDto.setPilihan2(pilihan.getPilihan2() != null ? pilihan.getPilihan2().getId() : null);
         pilihanDto.setPilihan3(pilihan.getPilihan3() != null ? pilihan.getPilihan3().getId() : null);
@@ -47,26 +46,38 @@ public class PilihanMapper {
     public Pilihan mapToPilihan(PilihanDto pilihanDto) {
         Pilihan pilihan = new Pilihan();
         pilihan.setId(pilihanDto.getId());
+
         // Set mahasiswa berdasarkan mahasiswaId dari DTO
-        // Anda perlu memuat mahasiswa dari repository atau sumber data yang sesuai
-        Mahasiswa mahasiswa = mahasiswaRepository.findById(pilihanDto.getMahasiswaId()).orElse(null);
+        Mahasiswa mahasiswa = getMahasiswaIfNotNull(pilihanDto.getMahasiswa());
         pilihan.setMahasiswa(mahasiswa);
+
         // Set formasi pilihan berdasarkan id dari DTO
-        // Anda perlu memuat formasi dari repository atau sumber data yang sesuai
-        Formasi pilihan1 = formasiRepository.findById(pilihanDto.getPilihan1()).orElse(null);
-        Formasi pilihan2 = formasiRepository.findById(pilihanDto.getPilihan2()).orElse(null);
-        Formasi pilihan3 = formasiRepository.findById(pilihanDto.getPilihan3()).orElse(null);
-        Formasi pilihanSistem = formasiRepository.findById(pilihanDto.getPilihanSistem()).orElse(null);
+        Formasi pilihan1 = getFormasiIfNotNull(pilihanDto.getPilihan1());
+        Formasi pilihan2 = getFormasiIfNotNull(pilihanDto.getPilihan2());
+        Formasi pilihan3 = getFormasiIfNotNull(pilihanDto.getPilihan3());
+        Formasi pilihanSistem = getFormasiIfNotNull(pilihanDto.getPilihanSistem());
+
         pilihan.setPilihan1(pilihan1);
         pilihan.setPilihan2(pilihan2);
         pilihan.setPilihan3(pilihan3);
         pilihan.setPilihanSistem(pilihanSistem);
+
         pilihan.setIndeksPilihan1(pilihanDto.getIndeksPilihan1());
         pilihan.setIndeksPilihan2(pilihanDto.getIndeksPilihan2());
         pilihan.setIndeksPilihan3(pilihanDto.getIndeksPilihan3());
         pilihan.setIpk(pilihanDto.getIpk());
         pilihan.setWaktuMemilih(pilihanDto.getWaktuMemilih());
         pilihan.setHasil(pilihanDto.getHasil());
+        // ...
         return pilihan;
     }
+
+    private Mahasiswa getMahasiswaIfNotNull(Long id) {
+        return (id != null) ? mahasiswaRepository.getReferenceById(id) : null;
+    }
+
+    private Formasi getFormasiIfNotNull(Long id) {
+        return (id != null) ? formasiRepository.getReferenceById(id) : null;
+    }
+
 }

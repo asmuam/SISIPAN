@@ -4,34 +4,48 @@
  */
 package com.polstat.sisipan.mapper;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.polstat.sisipan.dto.MahasiswaDto;
 import com.polstat.sisipan.entity.Mahasiswa;
+import com.polstat.sisipan.entity.Provinsi;
+import com.polstat.sisipan.repository.ProvinsiRepository;
 
 /**
  *
  * @author asmuammal
  */
+
+@Component
 public class MahasiswaMapper {
 
-    public static MahasiswaDto mapToMahasiswaDto(Mahasiswa mahasiswa) {
+    @Autowired
+    ProvinsiRepository provinsiRepository;
+
+    public MahasiswaDto mapToMahasiswaDto(Mahasiswa mahasiswa) {
         return MahasiswaDto.builder()
                 .id(mahasiswa.getId())
                 .nim(mahasiswa.getNim())
                 .name(mahasiswa.getName())
                 .prodi(mahasiswa.getProdi())
-                .provinsi(mahasiswa.getProvinsi())
+                .provinsi(mahasiswa.getProvinsi().getId())
                 .ipk(mahasiswa.getIpk())
                 .build();
     }
 
-    public static Mahasiswa mapToMahasiswa(MahasiswaDto mahasiswaDto) {
+    public Mahasiswa mapToMahasiswa(MahasiswaDto mahasiswaDto) {
         return Mahasiswa.builder()
                 .id(mahasiswaDto.getId())
                 .nim(mahasiswaDto.getNim())
                 .name(mahasiswaDto.getName())
                 .prodi(mahasiswaDto.getProdi())
-                .provinsi(mahasiswaDto.getProvinsi())
+                .provinsi(toProvinsi(mahasiswaDto.getProvinsi()))
                 .ipk(mahasiswaDto.getIpk())
                 .build();
+    }
+
+    Provinsi toProvinsi(Long provinsi) {
+        return provinsiRepository.getReferenceById(provinsi);
     }
 }

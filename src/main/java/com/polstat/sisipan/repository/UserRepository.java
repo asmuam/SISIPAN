@@ -11,10 +11,9 @@ package com.polstat.sisipan.repository;
 
 import com.polstat.sisipan.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.rest.core.annotation.RepositoryRestResource;
+import org.springframework.stereotype.Repository;
 
-@RepositoryRestResource(collectionResourceRel = "user", path = "user")
-
+@Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
     public User findByEmailAndPassword(String email, String password);

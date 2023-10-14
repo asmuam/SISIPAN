@@ -2,28 +2,27 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.polstat.sisipan.dto;
+package com.polstat.sisipan.rpc;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  *
  * @author asmuammal
  */
-@Data
-@Builder
-@NoArgsConstructor
+@Setter
+@Getter
 @AllArgsConstructor
-public class FormasiDto {
-
-    private Long id;
-    private Long provinsi;
-    private String kodeSatker;
-    private String namaSatuanKerja;
-    private Integer kuotaSt;
-    private Integer kuotaKs;
-    private Integer kuotaD3;
+@NoArgsConstructor
+@Builder
+public class SuccessResponse {
+    private Object data;
+    private String message;
+    private String httpStatus;
+    private int httpStatusCode;
+    // Buatlah konstruktor, getter, dan setter sesuai kebutuhan.
 }

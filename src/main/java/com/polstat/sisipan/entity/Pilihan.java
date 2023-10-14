@@ -19,7 +19,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.Formula;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
@@ -61,7 +60,7 @@ public class Pilihan {
     private Formasi pilihan3;
 
     @ManyToOne
-    @JoinColumn(name = "pilihan_sistem", referencedColumnName = "id")
+    @JoinColumn(name = "pilihan_sistem", referencedColumnName = "id",nullable = true)
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Formasi pilihanSistem;
 

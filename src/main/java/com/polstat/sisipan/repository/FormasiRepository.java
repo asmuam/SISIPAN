@@ -14,6 +14,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource(collectionResourceRel = "formasi", path = "formasi")
+//@Api(tags = "Formasi Resource", description = "Operations related to formasi")
+
 public interface FormasiRepository extends JpaRepository<Formasi, Long> {
 
     public List<Formasi> findByKuotaStTersediaGreaterThan(int i);

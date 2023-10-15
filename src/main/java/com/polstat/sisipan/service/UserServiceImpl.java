@@ -110,7 +110,7 @@ public class UserServiceImpl implements UserService {
             // Simpan perubahan ke repository
             User updatedUser = userRepository.save(user);
 
-            return userMapper.mapToUserDto(user);
+            return userMapper.mapToUserDto(updatedUser);
         } else {
             throw new IllegalArgumentException("Kata sandi lama tidak cocok");
         }

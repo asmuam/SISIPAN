@@ -5,8 +5,6 @@
 package com.polstat.sisipan.auth;
 
 import com.polstat.sisipan.dto.UserDto;
-import com.polstat.sisipan.exception.JwtValidationException;
-import com.polstat.sisipan.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -38,9 +36,6 @@ public class JwtFilter extends OncePerRequestFilter {
 
     @Autowired
     private JwtUtil jwtUtil;
-    @Autowired
-    private UserRepository userRepository;
-
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {

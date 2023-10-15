@@ -42,7 +42,7 @@ public class JwtUtil implements Serializable {
                 .claim("authorities", authorities) // Menggunakan claim untuk menyimpan peran
                 .setIssuer("Polstat")
                 .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION * 1000))
+                .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION * 1000)) //set detik di application.properties
                 .signWith(SignatureAlgorithm.HS512, SECRET_KEY)
                 .compact();
     }

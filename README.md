@@ -19,17 +19,7 @@
 - Penempatan
 
 ## Recent Update <a> name = "update"</a>
-forget to update...
----
-9/30/2023
-- updating schema
-- add query and mutation as in schema for MahasiswaGraphqlController
-- add MahasiswaGraphqlController related service
-- add ProvinsiGraphqlController query and mutation as in schema
----
-- add schema.graphqls
-- add query and mutation as in schema for UserGraphqlController
-- add UserGraphqlController related service
+
 
 ## About <a name = "about"></a>
 

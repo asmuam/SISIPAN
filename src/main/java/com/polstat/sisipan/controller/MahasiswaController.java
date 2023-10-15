@@ -11,6 +11,7 @@ import com.polstat.sisipan.service.MahasiswaService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import java.util.List;
@@ -40,7 +41,12 @@ public class MahasiswaController {
     @Operation(summary = "Get List of Mahasiswa.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "List of Mahasiswa", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "mahasiswaListExample",
+                value = "{\"data\": [{\"id\": 1, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, {\"id\": 2, \"nim\": \"54321\", \"name\": \"Jane Smith\", \"prodi\": \"Manajemen Bisnis\", \"provinsi\": 2, \"ipk\": 3.95}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            )
+            )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @GetMapping
     public ResponseEntity<?> getAllMahasiswa() {
@@ -59,7 +65,12 @@ public class MahasiswaController {
     @Operation(summary = "Get Data of Mahasiswa based on ID.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Data of Mahasiswa", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "mahasiswaExample",
+                value = "{\"data\": {\"id\": id, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            )
+            )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @GetMapping("/{id}")
     public ResponseEntity<?> getMahasiswaById(@PathVariable Long id) {
@@ -84,7 +95,11 @@ public class MahasiswaController {
     @Operation(summary = "Create Data Mahasiswa.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Data of Mahasiswa that has been created", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "mahasiswaExample",
+                value = "{\"data\": {\"id\": 1, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            ))}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping
     public ResponseEntity<?> createMahasiswa(@RequestBody MahasiswaDto mahasiswaDto) {
@@ -103,7 +118,12 @@ public class MahasiswaController {
     @Operation(summary = "Update all Data of Mahasiswa.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Updated Data of Mahasiswa", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "mahasiswaExample",
+                value = "{\"data\": {\"id\": id, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            )
+            )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PutMapping("/{id}")
     public ResponseEntity<?> updateMahasiswa(@PathVariable Long id, @RequestBody MahasiswaDto mahasiswaDto) {
@@ -129,7 +149,7 @@ public class MahasiswaController {
     @Operation(summary = "Delete Data of Mahasiswa based on ID.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "", content = {
-            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+            @Content()}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = 
                 @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @DeleteMapping("/{id}")

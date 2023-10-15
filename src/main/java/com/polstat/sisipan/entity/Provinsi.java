@@ -4,6 +4,7 @@
  */
 package com.polstat.sisipan.entity;
 
+import io.swagger.v3.oas.annotations.Hidden;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ import lombok.Setter;
  *
  * @author asmuammal
  */
+@Hidden
 @Setter
 @Getter
 @AllArgsConstructor

@@ -8,9 +8,11 @@ import com.polstat.sisipan.dto.UserDto;
 import com.polstat.sisipan.entity.User;
 import com.polstat.sisipan.mapper.UserMapper;
 import com.polstat.sisipan.repository.UserRepository;
+import com.polstat.sisipan.rpc.ChangePasswordRequest;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -71,11 +73,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(UserDto userDto) {
+    public boolean delete(Long id) {
         try {
-            User userToDelete = userRepository.findById(userDto.getId())
+            User userToDelete = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
             userRepository.delete(userToDelete);
+            return true;
         } catch (Exception e) {
             throw new RuntimeException("Gagal menghapus pengguna: " + e.getMessage(), e);
         }
@@ -91,6 +94,25 @@ public class UserServiceImpl implements UserService {
             return userDtos;
         } catch (Exception e) {
             throw new RuntimeException("Gagal mengambil daftar pengguna: " + e.getMessage(), e);
+        }
+    }
+
+    @Override
+    public UserDto changePassword(UserDto userDto, ChangePasswordRequest request) {
+        User user = userRepository.findById(userDto.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        if (passwordEncoder.matches(request.getOldPassword(), user.getPassword())) {
+            // Kata sandi lama cocok, ganti dengan kata sandi baru
+            String encodedPassword = passwordEncoder.encode(request.getNewPassword());
+            user.setPassword(encodedPassword);
+
+            // Simpan perubahan ke repository
+            User updatedUser = userRepository.save(user);
+
+            return userMapper.mapToUserDto(user);
+        } else {
+            throw new IllegalArgumentException("Kata sandi lama tidak cocok");
         }
     }
 }

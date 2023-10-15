@@ -11,6 +11,7 @@ import com.polstat.sisipan.service.FormasiService;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -43,9 +44,16 @@ public class FormasiController {
 
     @Operation(summary = "Get All formasi.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "List of Formasi", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "List of Formasi", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class, subTypes = {FormasiDto.class}),
+                    examples = @ExampleObject(
+                            name = "formasiExample",
+                            value = "{\"data\": [{\"id\": 1, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, {\"id\": 2, \"provinsi\": 2, \"kodeSatker\": \"Kode2\", \"namaSatuanKerja\": \"Satuan Kerja 2\", \"kuotaSt\": 15, \"kuotaKs\": 25, \"kuotaD3\": 35}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    ))
+        }),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))
+    })
+
     @GetMapping
     public ResponseEntity<?> getAllFormasi(
             @RequestParam(name = "size", required = false, defaultValue = "10") int size) {
@@ -63,9 +71,14 @@ public class FormasiController {
 
     @Operation(summary = "Get formasi by ID formasi.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Data of Formasi", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "Data of Formasi", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+                    examples = @ExampleObject(
+                            name = "formasiExample",
+                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    ))
+        }),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getFormasiById(@PathVariable Long id) {
@@ -88,9 +101,14 @@ public class FormasiController {
 
     @Operation(summary = "Add formasi.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Saved Formasi", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "Saved Formasi", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+                    examples = @ExampleObject(
+                            name = "newFormasiExample",
+                            value = "{\"data\": {\"id\": 1, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
+            )}),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
     @PostMapping
     public ResponseEntity<?> createFormasi(@RequestBody FormasiDto formasiDto) {
@@ -108,9 +126,14 @@ public class FormasiController {
 
     @Operation(summary = "Edit partial Data formasi.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "new Data of Formasi", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "new Data of Formasi", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+                    examples = @ExampleObject(
+                            name = "updatedFormasiExample",
+                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
+            )}),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
     @PatchMapping("/{id}")
     public ResponseEntity<?> partialUpdateFormasi(@PathVariable Long id, @RequestBody FormasiDto formasiDto) {
@@ -147,9 +170,14 @@ public class FormasiController {
 
     @Operation(summary = "Replace with new formasi data.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "new data of Formasi", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "new data of Formasi", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+                    examples = @ExampleObject(
+                            name = "updatedFormasiExample",
+                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
+            )}),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
     @PutMapping("/{id}")
     public ResponseEntity<?> updateFormasi(@PathVariable Long id, @RequestBody FormasiDto formasiDto) {
@@ -174,9 +202,9 @@ public class FormasiController {
 
     @Operation(summary = "Delete formasi by ID.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "No-content", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "No-content", content = {
+            @Content()}),
+        @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteFormasi(@PathVariable Long id) {

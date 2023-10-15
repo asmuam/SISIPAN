@@ -65,7 +65,7 @@ public class FormasiService {
         } catch (Exception ex) {
             // Tangani pengecualian yang mungkin terjadi, contoh: Logging, atau lempar
             // pengecualian yang sesuai
-            throw new RuntimeException("Terjadi kesalahan saat membuat formasi baru.", ex);
+            throw new RuntimeException("Terjadi kesalahan saat membuat formasi baru. "+ex.getMessage(), ex);
         }
     }
 

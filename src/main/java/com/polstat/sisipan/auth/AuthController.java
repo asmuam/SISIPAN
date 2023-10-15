@@ -11,6 +11,7 @@ import com.polstat.sisipan.service.MahasiswaService;
 import com.polstat.sisipan.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -44,9 +45,14 @@ public class AuthController {
 
     @Operation(summary = "User login to get access token.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Email and access token", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "Email and access token", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "authResponseExample",
+                value = "{\"data\": {\"email\": \"user@example.com\", \"accessToken\": \"accessTokenValue\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            )
+            )}),
+        @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody @Valid AuthRequest request) {
         try {
@@ -63,15 +69,37 @@ public class AuthController {
             response.setHttpStatusCode(HttpStatus.OK.value());
             return ResponseEntity.ok().body(response);
         } catch (BadCredentialsException ex) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+            ErrorResponse errorResponse = new ErrorResponse("Login Failed",
+                    HttpStatus.BAD_REQUEST.value(), ex.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
         }
+    }
+
+    @Operation(summary = "User Logout (not yet implemented).")
+    @ApiResponses(value = {
+        @ApiResponse(responseCode = "200", description = "", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
+        @ApiResponse(responseCode = "500", description = "internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
+ 
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout() {
+        SuccessResponse response = new SuccessResponse();
+            response.setMessage("Logout succesfull");
+            response.setHttpStatus(HttpStatus.OK.getReasonPhrase());
+            response.setHttpStatusCode(HttpStatus.OK.value());
+        return ResponseEntity.ok().body(response);
     }
 
     @Operation(summary = "User register first before login.")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "User details", content = {
-                    @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class)) }),
-            @ApiResponse(responseCode = "401", description = "invalid details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class))) })
+        @ApiResponse(responseCode = "200", description = "User details", content = {
+            @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
+            examples = @ExampleObject(
+                name = "userSingleExample",
+                value = "{\"data\": {\"id\": 1, \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+            )
+            )}),
+        @ApiResponse(responseCode = "401", description = "invalid details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody AuthRequest request) {
         try {
@@ -79,6 +107,7 @@ public class AuthController {
                     .email(request.getEmail())
                     .password(request.getPassword())
                     .mahasiswa(mahasiswaService.getMahasiswaId(request.getEmail().split("@")[0]))
+                    .role("MAHASISWA")
                     .build();
 
             UserDto user = userService.createUser(userDto);

@@ -4,12 +4,14 @@
  */
 package com.polstat.sisipan.service;
 
+import com.polstat.sisipan.dto.PilihanDto;
 import com.polstat.sisipan.entity.Formasi;
 import com.polstat.sisipan.entity.Mahasiswa;
 import com.polstat.sisipan.entity.Pilihan;
 import com.polstat.sisipan.repository.FormasiRepository;
 import com.polstat.sisipan.repository.MahasiswaRepository;
 import com.polstat.sisipan.repository.PilihanRepository;
+import com.polstat.sisipan.rpc.PenempatanResponse;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -34,9 +36,41 @@ public class PenempatanService {
     @Autowired
     private FormasiRepository formasiRepository;
 
+    @Autowired
+    private PilihanService pilihanService;
+
+    public List<PenempatanResponse> getHasilPenempatan() {
+        List<PenempatanResponse> hasilPenempatan = new ArrayList<>();
+
+        try {
+            List<PilihanDto> pilihanList = pilihanService.getAllPilihan();
+
+            if (!pilihanList.isEmpty()) {
+                for (PilihanDto pilihanDto : pilihanList) {
+                    PenempatanResponse response = new PenempatanResponse();
+                    response.setMahasiswa(mahasiswaRepository.getReferenceById(pilihanDto.getMahasiswa()));
+                    if (pilihanDto.getHasil() == "Pilihan 1") {
+                        response.setHasil(formasiRepository.getReferenceById(pilihanDto.getPilihan1())); // Sesuaikan dengan atribut yang sesuai di PilihanDto
+                    } else if (pilihanDto.getHasil() == "Pilihan 2") {
+                        response.setHasil(formasiRepository.getReferenceById(pilihanDto.getPilihan2())); // Sesuaikan dengan atribut yang sesuai di PilihanDto
+                    } else if (pilihanDto.getHasil() == "Pilihan 3") {
+                        response.setHasil(formasiRepository.getReferenceById(pilihanDto.getPilihan3())); // Sesuaikan dengan atribut yang sesuai di PilihanDto
+                    } else {
+                        response.setHasil(formasiRepository.getReferenceById(pilihanDto.getPilihanSistem())); // Sesuaikan dengan atribut yang sesuai di PilihanDto
+                    }
+                    hasilPenempatan.add(response);
+                }
+            }
+
+        } catch (Exception ex) {
+            // Handle exception
+        }
+
+        return hasilPenempatan;
+    }
+
     public void penempatanAcak() {
         try {
-            System.out.println("eksekusi penempatan acak");
             // List semua pilihan yang memiliki "Pilihan Sistem" di kolom hasil dan urutkan
             // berdasarkan ipk (tertinggi ke terendah)
             List<Pilihan> pilihanSistem = pilihanRepository.findByHasil("Pilihan Sistem");

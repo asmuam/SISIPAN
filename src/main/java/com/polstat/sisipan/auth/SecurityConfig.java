@@ -49,19 +49,23 @@ public class SecurityConfig {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.csrf().disable();
         http.authorizeRequests()
-//                .requestMatchers("/register", "/login","/docs/**").permitAll()
-//                .requestMatchers(HttpMethod.POST,"/formasi/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.PATCH,"/formasi/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.PUT,"/formasi/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.DELETE,"/formasi/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.POST,"/mahasiswa/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.PATCH,"/mahasiswa/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.PUT,"/mahasiswa/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.DELETE,"/mahasiswa/**").hasRole("ADMIN")
-//                .requestMatchers("/provinsi/**").hasRole("ADMIN")
-//                .requestMatchers(HttpMethod.POST,"/pilihan/**").hasRole("MAHASISWA")
-//                .anyRequest().authenticated();
-                  .anyRequest().permitAll();
+                .requestMatchers("/register", "/login","/docs/**").permitAll()
+                .requestMatchers(HttpMethod.POST,"/formasi/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH,"/formasi/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT,"/formasi/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/formasi/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/mahasiswa/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PATCH,"/mahasiswa/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT,"/mahasiswa/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE,"/mahasiswa/**").hasRole("ADMIN")
+                .requestMatchers("/provinsi/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.POST,"/pilihan").hasRole("MAHASISWA")
+                .requestMatchers(HttpMethod.PATCH,"/pilihan").hasRole("MAHASISWA")
+                .requestMatchers(HttpMethod.PUT,"/pilihan").hasRole("MAHASISWA")
+                .requestMatchers(HttpMethod.DELETE,"/pilihan").hasRole("MAHASISWA")
+                .requestMatchers(HttpMethod.POST,"/pilihan/delete-all").hasRole("ADMIN")
+                .requestMatchers("/penempatan").hasRole("ADMIN")
+                .anyRequest().authenticated();
         http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }

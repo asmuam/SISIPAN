@@ -4,8 +4,9 @@
  */
 package com.polstat.sisipan.rpc;
 
+import com.polstat.sisipan.entity.Formasi;
+import com.polstat.sisipan.entity.Mahasiswa;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,17 +14,13 @@ import lombok.Setter;
 /**
  *
  * @author asmuammal
- * @param <T>
  */
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Builder
-public class SuccessResponse {
-    private Object data;
-    private String message;
-    private String httpStatus;
-    private int httpStatusCode;
-    // Buatlah konstruktor, getter, dan setter sesuai kebutuhan.
+@AllArgsConstructor
+public class PenempatanResponse {
+
+    private Mahasiswa mahasiswa;
+    private Formasi hasil;
 }

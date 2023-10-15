@@ -5,6 +5,7 @@
 package com.polstat.sisipan.service;
 
 import com.polstat.sisipan.dto.UserDto;
+import com.polstat.sisipan.rpc.ChangePasswordRequest;
 import java.util.List;
 
 /**
@@ -19,9 +20,11 @@ public interface UserService {
 
     public UserDto saveUser(UserDto userDto);
 
-    public void delete(UserDto userDto);
+    public boolean delete(Long id);
 
     public UserDto createUser(UserDto user);
 
     public UserDto getUserByEmail(String email);
+
+    public UserDto changePassword(UserDto userDto, ChangePasswordRequest request);
 }

@@ -92,7 +92,6 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     public MahasiswaDto createMahasiswa(MahasiswaDto mahasiswaDto) {
         try {
             Mahasiswa mahasiswa = mahasiswaMapper.mapToMahasiswa(mahasiswaDto);
-            System.out.println(mahasiswa.getId());
             Mahasiswa savedMember = mahasiswaRepository.save(mahasiswa);
             return mahasiswaMapper.mapToMahasiswaDto(savedMember);
         } catch (Exception e) {

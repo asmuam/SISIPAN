@@ -5,7 +5,6 @@
 package com.polstat.sisipan.rpc;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,17 +12,12 @@ import lombok.Setter;
 /**
  *
  * @author asmuammal
- * @param <T>
  */
-@Setter
 @Getter
-@AllArgsConstructor
+@Setter
 @NoArgsConstructor
-@Builder
-public class SuccessResponse {
-    private Object data;
-    private String message;
-    private String httpStatus;
-    private int httpStatusCode;
-    // Buatlah konstruktor, getter, dan setter sesuai kebutuhan.
+@AllArgsConstructor
+public class ChangePasswordRequest {
+    private String oldPassword;
+    private String newPassword;
 }

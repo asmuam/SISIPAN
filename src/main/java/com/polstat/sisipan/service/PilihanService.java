@@ -5,6 +5,7 @@
 package com.polstat.sisipan.service;
 
 import com.polstat.sisipan.dto.PilihanDto;
+import com.polstat.sisipan.rpc.PilihanRequest;
 import java.util.List;
 
 /**
@@ -22,8 +23,10 @@ public interface PilihanService {
 
     public List<PilihanDto> getAllPilihan();
 
-    public PilihanDto updatePilihan(PilihanDto pilihanDto);
+    public PilihanDto updatePilihan(Long id, PilihanRequest request);
 
     public boolean deletePilihan(Long pilihanId);
+
+    public void deleteAllPilihan();
 
 }

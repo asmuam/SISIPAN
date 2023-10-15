@@ -26,6 +26,7 @@ public class UserDto implements UserDetails {
     private Long mahasiswa;
     private String email;
     private String password;
+    private String role;
     private Collection<? extends GrantedAuthority> authorities;
 
     public UserDto(String subject, Collection<? extends GrantedAuthority> authorities) {

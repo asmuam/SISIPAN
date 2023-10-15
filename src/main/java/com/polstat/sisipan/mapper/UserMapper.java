@@ -29,6 +29,7 @@ public class UserMapper {
                 .mahasiswa(mahasiswaId)
                 .email(user.getEmail())
                 .password(user.getPassword())
+                .role(user.getRole())
                 .build();
     }
 
@@ -38,6 +39,7 @@ public class UserMapper {
                 .mahasiswa(toMahasiswa(userDto.getMahasiswa()))
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
+                .role(userDto.getRole())
                 .build();
     }
 

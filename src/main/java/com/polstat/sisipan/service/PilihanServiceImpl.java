@@ -11,6 +11,7 @@ import com.polstat.sisipan.mapper.PilihanMapper;
 import com.polstat.sisipan.repository.FormasiRepository;
 import com.polstat.sisipan.repository.MahasiswaRepository;
 import com.polstat.sisipan.repository.PilihanRepository;
+import com.polstat.sisipan.rpc.PilihanRequest;
 import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
@@ -141,19 +142,19 @@ public class PilihanServiceImpl implements PilihanService {
     }
 
 @Override
-public PilihanDto updatePilihan(PilihanDto pilihanDto) {
+public PilihanDto updatePilihan(Long id, PilihanRequest request) {
     try {
-        Pilihan existingPilihan = pilihanRepository.findById(pilihanDto.getId())
+        Pilihan existingPilihan = pilihanRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pilihan dengan ID tersebut tidak ditemukan."));
 
-        if (pilihanDto.getPilihan1() != null) {
-            existingPilihan.setPilihan1(formasiRepository.getReferenceById(pilihanDto.getPilihan1()));
+        if (request.getPilihan1() != null) {
+            existingPilihan.setPilihan1(formasiRepository.getReferenceById(request.getPilihan1()));
         }
-        if (pilihanDto.getPilihan2() != null) {
-            existingPilihan.setPilihan2(formasiRepository.getReferenceById(pilihanDto.getPilihan2()));
+        if (request.getPilihan2() != null) {
+            existingPilihan.setPilihan2(formasiRepository.getReferenceById(request.getPilihan2()));
         }
-        if (pilihanDto.getPilihan3() != null) {
-            existingPilihan.setPilihan3(formasiRepository.getReferenceById(pilihanDto.getPilihan3()));
+        if (request.getPilihan3() != null) {
+            existingPilihan.setPilihan3(formasiRepository.getReferenceById(request.getPilihan3()));
         }
         Pilihan updatedPilihan = pilihanRepository.save(existingPilihan);
         return pilihanMapper.mapToPilihanDto(updatedPilihan);
@@ -175,6 +176,11 @@ public PilihanDto updatePilihan(PilihanDto pilihanDto) {
             // kesalahan yang sesuai
             throw new RuntimeException("Terjadi kesalahan dalam menghapus pilihan.", e);
         }
+    }
+
+    @Override
+    public void deleteAllPilihan() {
+        pilihanRepository.deleteAll();
     }
 
 }

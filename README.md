@@ -15,9 +15,12 @@
 - CRUD mahasiswa
 - CRUD provinsi
 - CRUD formasi
+- CRUD pilihan
+- Penempatan
 
 ## Recent Update <a> name = "update"</a>
-
+forget to update...
+---
 9/30/2023
 - updating schema
 - add query and mutation as in schema for MahasiswaGraphqlController

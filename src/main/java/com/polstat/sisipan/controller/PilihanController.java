@@ -39,10 +39,10 @@ public class PilihanController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "List of pilihan", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "pilihanListExample",
-                value = "{\"data\": [{\"id\": 1, \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Diterima\"}, {\"id\": 2, \"mahasiswa\": 2, \"pilihan1\": 104, \"pilihan2\": 105, \"pilihan3\": 106, \"pilihanSistem\": 202, \"indeksPilihan1\": 3.8, \"indeksPilihan2\": 3.9, \"indeksPilihan3\": 4.0, \"ipk\": 3.95, \"waktuMemilih\": \"2023-10-15T14:00:00Z\", \"hasil\": \"Ditolak\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "pilihanListExample",
+                            value = "{\"data\": [{\"id\": 1, \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Pilihan 1\"}, {\"id\": 2, \"mahasiswa\": 2, \"pilihan1\": 104, \"pilihan2\": 105, \"pilihan3\": 106, \"pilihanSistem\": 202, \"indeksPilihan1\": 3.8, \"indeksPilihan2\": 3.9, \"indeksPilihan3\": 4.0, \"ipk\": 3.95, \"waktuMemilih\": \"2023-10-15T14:00:00Z\", \"hasil\": \"Pilihan 2\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @GetMapping()
@@ -67,10 +67,10 @@ public class PilihanController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "data of pilihan", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-             examples = @ExampleObject(
-                name = "pilihanSingleExample",
-                value = "{\"data\": {\"id\": 1, \"mahasiswa\": mhs_id, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Diterima\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "pilihanSingleExample",
+                            value = "{\"data\": [{\"id\": 1, \"mahasiswa\": \"mhs_id\", \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Pilihan 1\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
@@ -99,10 +99,10 @@ public class PilihanController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "List of pilihan", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "pilihanListExample",
-                value = "{\"data\": [{\"id\": 1, \"mahasiswa\": 1, \"pilihan1\": formasi_id, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Diterima\"}, {\"id\": 2, \"mahasiswa\": 2, \"pilihan1\": 104, \"pilihan2\": formasi_id, \"pilihan3\": 106, \"pilihanSistem\": 202, \"indeksPilihan1\": 3.8, \"indeksPilihan2\": 3.9, \"indeksPilihan3\": 4.0, \"ipk\": 3.95, \"waktuMemilih\": \"2023-10-15T14:00:00Z\", \"hasil\": \"Ditolak\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "pilihanListExample",
+                            value = "{\"data\": [{\"id\": 1, \"mahasiswa\": 1, \"pilihan1\": \"formasi_id\", \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Pilihan 2\"}, {\"id\": 2, \"mahasiswa\": 2, \"pilihan1\": 104, \"pilihan2\": \"formasi_id\", \"pilihan3\": 106, \"pilihanSistem\": 202, \"indeksPilihan1\": 3.8, \"indeksPilihan2\": 3.9, \"indeksPilihan3\": 4.0, \"ipk\": 3.95, \"waktuMemilih\": \"2023-10-15T14:00:00Z\", \"hasil\": \"Pilihan 2\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
@@ -128,10 +128,10 @@ public class PilihanController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "new data of pilihan", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "pilihanSingleExample",
-                value = "{\"data\": {\"id\": pilihan_id, \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Diterima\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "pilihanSingleExample",
+                            value = "{\"data\": [{\"id\": \"pilihan_id\", \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Pilihan 3\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 
@@ -160,10 +160,10 @@ public class PilihanController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "new data of pilihan", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "pilihanSingleExample",
-                value = "{\"data\": {\"id\": pilihan_id, \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Diterima\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "pilihanSingleExample",
+                            value = "{\"data\": [{\"id\": \"pilihan_id\", \"mahasiswa\": 1, \"pilihan1\": 101, \"pilihan2\": 102, \"pilihan3\": 103, \"pilihanSistem\": 201, \"indeksPilihan1\": 3.5, \"indeksPilihan2\": 3.6, \"indeksPilihan3\": 3.7, \"ipk\": 3.75, \"waktuMemilih\": \"2023-10-15T12:00:00Z\", \"hasil\": \"Pilihan 2\"}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
 

@@ -42,7 +42,7 @@ public class UserController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
             examples = @ExampleObject(
                 name = "userSingleExample",
-                value = "{\"data\": {\"id\": id, \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                value = "{\"data\": {\"id\": \"id\", \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
             )
             )}),
         @ApiResponse(responseCode = "500", description = "internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})

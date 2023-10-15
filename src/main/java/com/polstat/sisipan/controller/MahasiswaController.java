@@ -68,7 +68,7 @@ public class MahasiswaController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
             examples = @ExampleObject(
                 name = "mahasiswaExample",
-                value = "{\"data\": {\"id\": id, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                value = "{\"data\": {\"id\": \"id\", \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
             )
             )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
@@ -121,7 +121,7 @@ public class MahasiswaController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
             examples = @ExampleObject(
                 name = "mahasiswaExample",
-                value = "{\"data\": {\"id\": id, \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                value = "{\"data\": {\"id\": \"id\", \"nim\": \"12345\", \"name\": \"John Doe\", \"prodi\": \"Teknik Informatika\", \"provinsi\": 1, \"ipk\": 3.75}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
             )
             )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})

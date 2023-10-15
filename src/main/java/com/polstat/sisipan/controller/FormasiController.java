@@ -75,7 +75,7 @@ public class FormasiController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
                     examples = @ExampleObject(
                             name = "formasiExample",
-                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                            value = "{\"data\": [{\"id\": \"id\", \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
                     ))
         }),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
@@ -105,7 +105,7 @@ public class FormasiController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
                     examples = @ExampleObject(
                             name = "newFormasiExample",
-                            value = "{\"data\": {\"id\": 1, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                            value = "{\"data\": [{\"id\": 1, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
                     )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
@@ -130,7 +130,7 @@ public class FormasiController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
                     examples = @ExampleObject(
                             name = "updatedFormasiExample",
-                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                            value = "{\"data\": [{\"id\": \"id\", \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
                     )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
@@ -174,7 +174,7 @@ public class FormasiController {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
                     examples = @ExampleObject(
                             name = "updatedFormasiExample",
-                            value = "{\"data\": {\"id\": id, \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                            value = "{\"data\": [{\"id\": \"id\", \"provinsi\": 1, \"kodeSatker\": \"Kode1\", \"namaSatuanKerja\": \"Satuan Kerja 1\", \"kuotaSt\": 10, \"kuotaKs\": 20, \"kuotaD3\": 30}], \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
                     )
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})

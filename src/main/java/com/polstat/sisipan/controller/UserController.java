@@ -4,6 +4,8 @@
  */
 package com.polstat.sisipan.controller;
 
+import com.polstat.sisipan.auth.JwtFilter;
+import com.polstat.sisipan.auth.JwtUtil;
 import com.polstat.sisipan.dto.UserDto;
 import com.polstat.sisipan.rpc.ChangePasswordRequest;
 import com.polstat.sisipan.rpc.ErrorResponse;
@@ -15,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -35,22 +38,32 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private JwtFilter jwtFilter;
 
     @Operation(summary = "Change password of user by ID.")
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Updated Data of user", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "userSingleExample",
-                value = "{\"data\": {\"id\": \"id\", \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "userSingleExample",
+                            value = "{\"data\": {\"id\": \"id\", \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "500", description = "internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping("/{id}/changePassword")
-    public ResponseEntity<?> changePassword(@PathVariable Long id, @RequestBody ChangePasswordRequest request) {
+    public ResponseEntity<?> changePassword(@PathVariable Long id, @RequestBody ChangePasswordRequest request, HttpServletRequest Httprequest) {
         try {
+            boolean validateUser = jwtFilter.validateUser(id,Httprequest);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
             UserDto userDto = userService.getUser(id);
-            UserDto updatedUser = userService.changePassword(userDto,request);
+            UserDto updatedUser = userService.changePassword(userDto, request);
             if (updatedUser != null) {
                 SuccessResponse successResponse = new SuccessResponse(updatedUser, "Success", "OK",
                         HttpStatus.OK.value());
@@ -71,11 +84,19 @@ public class UserController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "", content = {
             @Content()}),
-        @ApiResponse(responseCode = "401", description = "invalid credentials", content = 
-                @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
+        @ApiResponse(responseCode = "401", description = "invalid credentials", content
+                = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<?> deleteUser(@PathVariable Long id, HttpServletRequest request) {
         try {
+            boolean validateUser = jwtFilter.validateUser(id,request);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
             boolean deleted = userService.delete(id);
             if (deleted) {
                 SuccessResponse successResponse = new SuccessResponse();

@@ -5,6 +5,7 @@
 package com.polstat.sisipan.auth;
 
 import com.polstat.sisipan.exception.JwtValidationException;
+import com.polstat.sisipan.repository.UserRepository;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
@@ -15,6 +16,7 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
@@ -32,6 +34,8 @@ public class JwtUtil implements Serializable {
     private String SECRET_KEY;
     @Value("${jwt.expiration}")
     private long EXPIRE_DURATION;
+    @Autowired
+    UserRepository userRepository;
 
     public String generateAccessToken(Authentication authentication) {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
@@ -71,4 +75,15 @@ public class JwtUtil implements Serializable {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+    public Long getUserIdFromToken(String token) {
+        Claims claims = parseClaims(token);
+        Long userId = userRepository.findIdByEmail(claims.getSubject());
+        try {
+            return (userId);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
 }

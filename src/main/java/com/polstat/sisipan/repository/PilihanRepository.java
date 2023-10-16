@@ -16,6 +16,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
 @Hidden
 @Repository
 public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
@@ -30,4 +31,6 @@ public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
 
     @Query("SELECT p FROM Pilihan p WHERE p.pilihan1 = :formasiId OR p.pilihan2 = :formasiId OR p.pilihan3 = :formasiId")
     List<Pilihan> findByFormasiId(@Param("formasiId") Long formasiId);
+
+    Long findMahasiswaIdById(Long pilihanId);
 }

@@ -4,7 +4,10 @@
  */
 package com.polstat.sisipan.controller;
 
+import com.polstat.sisipan.auth.JwtFilter;
 import com.polstat.sisipan.dto.PilihanDto;
+import com.polstat.sisipan.repository.PilihanRepository;
+import com.polstat.sisipan.repository.UserRepository;
 import com.polstat.sisipan.rpc.ErrorResponse;
 import com.polstat.sisipan.rpc.PilihanRequest;
 import com.polstat.sisipan.rpc.SuccessResponse;
@@ -16,6 +19,7 @@ import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.servlet.http.HttpServletRequest;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +38,12 @@ public class PilihanController {
 
     @Autowired
     private PilihanService pilihanService;
+    @Autowired
+    private JwtFilter jwtFilter;
+    @Autowired
+    UserRepository userRepository;
+    @Autowired
+    PilihanRepository pilihanRepository;
 
     @Operation(summary = "Get List of pilihan.")
     @ApiResponses(value = {
@@ -77,8 +87,17 @@ public class PilihanController {
     // Endpoint untuk menambahkan pilihan
     @PostMapping("/{mhs_id}")
     public ResponseEntity<?> tambahPilihan(@PathVariable("mhs_id") Long mahasiswaId,
-            @RequestBody PilihanRequest request) {
+            @RequestBody PilihanRequest request, HttpServletRequest Httprequest) {
         try {
+            Long id = userRepository.findUserIdByMhsId(mahasiswaId);
+            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
             PilihanDto pilihan = pilihanService.createPilihan(mahasiswaId, request.getPilihan1(), request.getPilihan2(),
                     request.getPilihan3());
             SuccessResponse response = new SuccessResponse();
@@ -137,8 +156,19 @@ public class PilihanController {
 
     @PutMapping("/{pilihan_id}")
     public ResponseEntity<?> replacePilihan(@PathVariable("pilihan_id") Long pilihanId,
-            @RequestBody PilihanRequest request) {
+            @RequestBody PilihanRequest request, HttpServletRequest Httprequest) {
         try {
+            Long idMhs = pilihanRepository.findMahasiswaIdById(pilihanId);
+            Long id = userRepository.findUserIdByMhsId(idMhs);
+
+            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
             PilihanDto updatedPilihan = pilihanService.updatePilihan(pilihanId, request);
             if (updatedPilihan != null) {
                 SuccessResponse successResponse = new SuccessResponse(updatedPilihan, "Update Success", "OK",
@@ -170,8 +200,20 @@ public class PilihanController {
     // Endpoint untuk mengubah pilihan dengan data parsial
     @PatchMapping("/{pilihan_id}")
     public ResponseEntity<?> patchPilihan(@PathVariable("pilihan_id") Long pilihanId,
-            @RequestBody PilihanRequest request) {
+            @RequestBody PilihanRequest request, HttpServletRequest Httprequest) {
         try {
+            Long idMhs = pilihanRepository.findMahasiswaIdById(pilihanId);
+            Long id = userRepository.findUserIdByMhsId(idMhs);
+
+            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
+            
             PilihanDto updatedPilihan = pilihanService.updatePilihan(pilihanId, request);
             SuccessResponse response = new SuccessResponse();
             response.setData(updatedPilihan);
@@ -195,8 +237,20 @@ public class PilihanController {
 
     // Endpoint untuk menghapus pilihan
     @DeleteMapping("/{pilihan_id}")
-    public ResponseEntity<?> deletePilihan(@PathVariable("pilihan_id") Long pilihanId) {
+    public ResponseEntity<?> deletePilihan(@PathVariable("pilihan_id") Long pilihanId, HttpServletRequest Httprequest) {
         try {
+            Long idMhs = pilihanRepository.findMahasiswaIdById(pilihanId);
+            Long id = userRepository.findUserIdByMhsId(idMhs);
+
+            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
+
+            if (!validateUser) {
+                // Token tidak valid atau ID tidak cocok
+                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+            }
+            
             boolean deleted = pilihanService.deletePilihan(pilihanId);
             if (deleted) {
                 SuccessResponse successResponse = new SuccessResponse();

@@ -32,7 +32,7 @@ public class FormasiMapper {
                 .kuotaD3(formasi.getKuotaD3())
                 // Anda dapat menambahkan properti yang sesuai di sini
                 .build();
-        if (formasiDto.getProvinsi() != null) {
+        if (formasi.getProvinsi() != null) {
             formasiDto.setProvinsi(formasi.getProvinsi().getId());
         }
         return formasiDto;

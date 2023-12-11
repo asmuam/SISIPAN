@@ -16,6 +16,8 @@ import io.jsonwebtoken.UnsupportedJwtException;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -41,9 +43,13 @@ public class JwtUtil implements Serializable {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
 
         Collection<? extends GrantedAuthority> authorities = userDetails.getAuthorities();
+        List<String> roles = authorities.stream()
+            .map(GrantedAuthority::getAuthority)
+            .collect(Collectors.toList());
+
         return Jwts.builder()
                 .setSubject(userDetails.getUsername())
-                .claim("authorities", authorities) // Menggunakan claim untuk menyimpan peran
+                .claim("authorities", roles) // Menggunakan claim untuk menyimpan peran
                 .setIssuer("Polstat")
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRE_DURATION * 1000)) //set detik di application.properties

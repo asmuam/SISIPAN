@@ -9,6 +9,7 @@ import com.polstat.sisipan.rpc.ErrorResponse;
 import com.polstat.sisipan.rpc.SuccessResponse;
 import com.polstat.sisipan.service.MahasiswaService;
 import com.polstat.sisipan.service.UserService;
+import io.jsonwebtoken.Claims;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,10 +49,10 @@ public class AuthController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "Email and access token", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "authResponseExample",
-                value = "{\"data\": {\"email\": \"user@example.com\", \"accessToken\": \"accessTokenValue\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "authResponseExample",
+                            value = "{\"data\": {\"email\": \"user@example.com\", \"accessToken\": \"accessTokenValue\"}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "401", description = "invalid credentials", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping("/login")
@@ -59,9 +61,12 @@ public class AuthController {
             Authentication authentication = authManager.authenticate(
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(), request.getPassword()));
-
             String accessToken = jwtUtil.generateAccessToken(authentication);
-            AuthResponse authResponse = new AuthResponse(request.getEmail(), accessToken);
+            Claims claims = jwtUtil.parseClaims(accessToken);
+            List<String> roles = (List<String>) claims.get("authorities");
+            String role = roles.isEmpty() ? "MAHASISWA" : roles.get(0);
+            UserDto userDto = userService.getUserByEmail(request.getEmail());
+            AuthResponse authResponse = new AuthResponse(userDto.getId(),request.getEmail(), accessToken, role,userDto.getMahasiswa());
             SuccessResponse response = new SuccessResponse();
             response.setData(authResponse);
             response.setMessage("Login succesfull");
@@ -80,13 +85,13 @@ public class AuthController {
         @ApiResponse(responseCode = "200", description = "", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class))}),
         @ApiResponse(responseCode = "500", description = "internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
- 
+
     @PostMapping("/logout")
     public ResponseEntity<?> logout() {
         SuccessResponse response = new SuccessResponse();
-            response.setMessage("Logout succesfull");
-            response.setHttpStatus(HttpStatus.OK.getReasonPhrase());
-            response.setHttpStatusCode(HttpStatus.OK.value());
+        response.setMessage("Logout succesfull");
+        response.setHttpStatus(HttpStatus.OK.getReasonPhrase());
+        response.setHttpStatusCode(HttpStatus.OK.value());
         return ResponseEntity.ok().body(response);
     }
 
@@ -94,10 +99,10 @@ public class AuthController {
     @ApiResponses(value = {
         @ApiResponse(responseCode = "200", description = "User details", content = {
             @Content(mediaType = "application/json", schema = @Schema(implementation = SuccessResponse.class),
-            examples = @ExampleObject(
-                name = "userSingleExample",
-                value = "{\"data\": {\"id\": 1, \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
-            )
+                    examples = @ExampleObject(
+                            name = "userSingleExample",
+                            value = "{\"data\": {\"id\": 1, \"mahasiswa\": 1, \"email\": \"user@example.com\", \"password\": \"hashedPassword\", \"role\": \"ROLE_USER\", \"authorities\": [{\"authority\": \"ROLE_USER\"}]}, \"message\": \"Success\", \"httpStatus\": \"OK\", \"httpStatusCode\": 200}"
+                    )
             )}),
         @ApiResponse(responseCode = "401", description = "invalid details", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @PostMapping("/register")

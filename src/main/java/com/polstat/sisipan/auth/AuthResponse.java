@@ -19,6 +19,9 @@ import lombok.Setter;
 @AllArgsConstructor
 public class AuthResponse {
 
+    private Long id;
     private String email;
     private String accessToken;
+    private String role; // Tambahkan properti role di sini
+    private Long idMhs;
 }

@@ -61,6 +61,7 @@ public class FormasiController {
             List<FormasiDto> formasiList = formasiService.getAllFormasi();
             SuccessResponse successResponse = new SuccessResponse(formasiList.subList(0, size), "Success", "OK",
                     HttpStatus.OK.value());
+            System.out.println("call");
             return ResponseEntity.ok(successResponse);
         } catch (Exception ex) {
             ErrorResponse errorResponse = new ErrorResponse("Internal Server Error",

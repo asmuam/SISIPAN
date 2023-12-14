@@ -24,4 +24,5 @@ public class AuthResponse {
     private String accessToken;
     private String role; // Tambahkan properti role di sini
     private Long idMhs;
+    private Long expiresIn;
 }

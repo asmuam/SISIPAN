@@ -79,10 +79,12 @@ public class MahasiswaController {
             if (mahasiswa != null) {
                 SuccessResponse successResponse = new SuccessResponse(mahasiswa, "Success", "OK",
                         HttpStatus.OK.value());
+                System.out.println("mhs diambil");
                 return ResponseEntity.ok(successResponse);
             } else {
                 ErrorResponse errorResponse = new ErrorResponse("Not Found", HttpStatus.NOT_FOUND.value(),
                         "Mahasiswa not found");
+                                System.out.println("mhs g ketemu");
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(errorResponse);
             }
         } catch (Exception ex) {

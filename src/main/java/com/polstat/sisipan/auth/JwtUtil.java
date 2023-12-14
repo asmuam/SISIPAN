@@ -91,5 +91,10 @@ public class JwtUtil implements Serializable {
             return null;
         }
     }
+    
+    public long getExpiresIn() {
+    return EXPIRE_DURATION;
+}
+
 
 }

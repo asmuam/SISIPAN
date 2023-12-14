@@ -66,12 +66,13 @@ public class AuthController {
             List<String> roles = (List<String>) claims.get("authorities");
             String role = roles.isEmpty() ? "MAHASISWA" : roles.get(0);
             UserDto userDto = userService.getUserByEmail(request.getEmail());
-            AuthResponse authResponse = new AuthResponse(userDto.getId(),request.getEmail(), accessToken, role,userDto.getMahasiswa());
+            AuthResponse authResponse = new AuthResponse(userDto.getId(),request.getEmail(), accessToken, role,userDto.getMahasiswa(),jwtUtil.getExpiresIn());
             SuccessResponse response = new SuccessResponse();
             response.setData(authResponse);
             response.setMessage("Login succesfull");
             response.setHttpStatus(HttpStatus.OK.getReasonPhrase());
             response.setHttpStatusCode(HttpStatus.OK.value());
+            System.out.println("login sukses");
             return ResponseEntity.ok().body(response);
         } catch (BadCredentialsException ex) {
             ErrorResponse errorResponse = new ErrorResponse("Login Failed",

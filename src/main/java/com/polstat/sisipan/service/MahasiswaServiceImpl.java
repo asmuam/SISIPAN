@@ -32,6 +32,7 @@ public class MahasiswaServiceImpl implements MahasiswaService {
     @Override
     public Long getMahasiswaId(String nim) {
         try {
+            System.out.println("idMHS="+mahasiswaRepository.findIdByNim(nim));
             return mahasiswaRepository.findIdByNim(nim);
         } catch (Exception e) {
             // Penanganan kesalahan dapat ditambahkan di sini, seperti logging atau pesan

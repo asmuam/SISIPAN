@@ -32,5 +32,6 @@ public interface PilihanRepository extends JpaRepository<Pilihan, Long> {
     @Query("SELECT p FROM Pilihan p WHERE p.pilihan1 = :formasiId OR p.pilihan2 = :formasiId OR p.pilihan3 = :formasiId")
     List<Pilihan> findByFormasiId(@Param("formasiId") Long formasiId);
 
-    Long findMahasiswaIdById(Long pilihanId);
+    @Query("SELECT p.mahasiswa.id FROM Pilihan p WHERE p.id = :pilihanId")
+    Long findMahasiswaIdById(@Param("pilihanId") Long pilihanId);
 }

@@ -44,22 +44,28 @@ public class JwtFilter extends OncePerRequestFilter {
             filterChain.doFilter(request, response);
             return;
         }
-
+        System.out.println("dofilter");
         String token = getAccessToken(request);
         if (!jwtUtil.validateAccessToken(token)) {
+            System.out.println("token invalid" + token);
             filterChain.doFilter(request, response);
             return;
         }
+        System.out.println("token valid" + token);
         setAuthenticationContext(token, request);
         filterChain.doFilter(request, response);
     }
 
     private boolean hasAuthorizationBearer(HttpServletRequest request) {
         String header = request.getHeader("Authorization");
-
+        System.out.println("header" + header);
         if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
+            System.out.println("gagal" + header);
+
             return false;
         }
+        System.out.println("sukses" + header);
+
         return true;
     }
 
@@ -71,7 +77,7 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private void setAuthenticationContext(String token, HttpServletRequest request) {
         UserDetails userDetails = getUserDetails(token);
-
+        System.out.println("userdetails" + userDetails);
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null,
                 userDetails.getAuthorities()); // Menggunakan peran dari userDetails
         authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
@@ -80,31 +86,50 @@ public class JwtFilter extends OncePerRequestFilter {
 
     private UserDetails getUserDetails(String token) {
         Claims claims = jwtUtil.parseClaims(token);
+        System.out.println("claim" + claims);
+
         String subject = claims.getSubject();
+        System.out.println("claim subject" + subject);
 
         Collection<? extends GrantedAuthority> authorities = authoritiesFromClaims(claims);
-
+        System.out.println("authorities" + authorities);
         UserDetails userDetails = new UserDto(subject, authorities);
-
+        System.out.println("new userdetails" + userDetails);
         return userDetails;
     }
 
+//    private Collection<? extends GrantedAuthority> authoritiesFromClaims(Claims claims) {
+//        @SuppressWarnings("unchecked")
+//        List<Map<String, String>> authoritiesMap = (List<Map<String, String>>) claims.get("authorities");
+//
+//        if (authoritiesMap == null) {
+//            return Collections.emptyList();
+//        }
+//
+//        return authoritiesMap.stream()
+//                .map(authorityData -> new SimpleGrantedAuthority("ROLE_" + authorityData.get("authority")))
+//                .collect(Collectors.toList());
+//    }
     private Collection<? extends GrantedAuthority> authoritiesFromClaims(Claims claims) {
-        @SuppressWarnings("unchecked")
-        List<Map<String, String>> authoritiesMap = (List<Map<String, String>>) claims.get("authorities");
+        Object authoritiesObject = claims.get("authorities");
 
-        if (authoritiesMap == null) {
-            return Collections.emptyList();
+        if (authoritiesObject instanceof List<?>) {
+            @SuppressWarnings("unchecked")
+            List<String> authoritiesList = (List<String>) authoritiesObject;
+            System.out.println("authList" + authoritiesList);
+            if (!authoritiesList.isEmpty()) {
+                String authority = authoritiesList.get(0);
+                System.out.println("authList" + authority);
+                return Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + authority));
+            }
         }
 
-        return authoritiesMap.stream()
-                .map(authorityData -> new SimpleGrantedAuthority("ROLE_" + authorityData.get("authority")))
-                .collect(Collectors.toList());
+        return Collections.emptyList();
     }
 
     public boolean validateUser(Long id, HttpServletRequest request) {
         Long userIdFromToken = jwtUtil.getUserIdFromToken(getAccessToken(request));
-        if (userIdFromToken == null || userIdFromToken!=id) {
+        if (userIdFromToken == null || userIdFromToken != id) {
             return false;
         }
         return true;

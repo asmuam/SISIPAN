@@ -144,6 +144,7 @@ public class PilihanServiceImpl implements PilihanService {
 @Override
 public PilihanDto updatePilihan(Long id, PilihanRequest request) {
     try {
+        System.out.println("idpilihan"+id);
         Pilihan existingPilihan = pilihanRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Pilihan dengan ID tersebut tidak ditemukan."));
 
@@ -159,6 +160,7 @@ public PilihanDto updatePilihan(Long id, PilihanRequest request) {
         Pilihan updatedPilihan = pilihanRepository.save(existingPilihan);
         return pilihanMapper.mapToPilihanDto(updatedPilihan);
     } catch (Exception e) {
+        System.out.println(e.getMessage());
         // Penanganan kesalahan dapat ditambahkan di sini, seperti logging atau pesan kesalahan yang sesuai
         throw new RuntimeException("Terjadi kesalahan dalam mengupdate pilihan.", e);
     }

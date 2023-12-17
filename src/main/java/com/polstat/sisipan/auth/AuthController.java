@@ -73,6 +73,7 @@ public class AuthController {
             response.setHttpStatus(HttpStatus.OK.getReasonPhrase());
             response.setHttpStatusCode(HttpStatus.OK.value());
             System.out.println("login sukses");
+            System.out.println("login sukses" + authResponse.toString());
             return ResponseEntity.ok().body(response);
         } catch (BadCredentialsException ex) {
             ErrorResponse errorResponse = new ErrorResponse("Login Failed",

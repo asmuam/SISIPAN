@@ -56,14 +56,15 @@ public class PilihanController {
             )}),
         @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class)))})
     @GetMapping()
-    public ResponseEntity<?> getPilihan(@RequestParam(name = "size", required = false, defaultValue = "10") int size) {
+    public ResponseEntity<?> getPilihan(@RequestParam(name = "size", required = false, defaultValue = "100") int size) {
 
         try {
             List<PilihanDto> pilihanList = pilihanService.getAllPilihan();
             if (pilihanList.isEmpty()) {
                 throw new ResourceNotFoundException("Belum ada mahasiswa yang memilih");
             }
-            SuccessResponse successResponse = new SuccessResponse(pilihanList.subList(0, size), "Success", "OK",
+                int requestedSize = Math.min(size, pilihanList.size());
+            SuccessResponse successResponse = new SuccessResponse(pilihanList.subList(0, requestedSize), "Success", "OK",
                     HttpStatus.OK.value());
             return ResponseEntity.ok(successResponse);
         } catch (Exception ex) {
@@ -160,9 +161,9 @@ public class PilihanController {
         try {
             Long idMhs = pilihanRepository.findMahasiswaIdById(pilihanId);
             Long id = userRepository.findUserIdByMhsId(idMhs);
-
+            System.out.println(idMhs);
+            System.out.println(id);
             boolean validateUser = jwtFilter.validateUser(id, Httprequest);
-
             if (!validateUser) {
                 // Token tidak valid atau ID tidak cocok
                 ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
@@ -171,6 +172,7 @@ public class PilihanController {
             }
             PilihanDto updatedPilihan = pilihanService.updatePilihan(pilihanId, request);
             if (updatedPilihan != null) {
+                System.out.println("updated");
                 SuccessResponse successResponse = new SuccessResponse(updatedPilihan, "Update Success", "OK",
                         HttpStatus.OK.value());
                 return ResponseEntity.ok(successResponse);
@@ -205,14 +207,14 @@ public class PilihanController {
             Long idMhs = pilihanRepository.findMahasiswaIdById(pilihanId);
             Long id = userRepository.findUserIdByMhsId(idMhs);
 
-            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
-
-            if (!validateUser) {
-                // Token tidak valid atau ID tidak cocok
-                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
-                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
-                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
-            }
+//            boolean validateUser = jwtFilter.validateUser(id, Httprequest);
+//
+//            if (!validateUser) {
+//                // Token tidak valid atau ID tidak cocok
+//                ErrorResponse errorResponse = new ErrorResponse("Unauthorized",
+//                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
+//                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
+//            }
             
             PilihanDto updatedPilihan = pilihanService.updatePilihan(pilihanId, request);
             SuccessResponse response = new SuccessResponse();

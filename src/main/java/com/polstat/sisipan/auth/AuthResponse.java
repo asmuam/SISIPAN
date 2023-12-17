@@ -25,4 +25,11 @@ public class AuthResponse {
     private String role; // Tambahkan properti role di sini
     private Long idMhs;
     private Long expiresIn;
+
+    @Override
+    public String toString() {
+        return id+" "+email+" "+accessToken+" "+role+" "+idMhs+" "+expiresIn; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+    }
+    
+    
 }

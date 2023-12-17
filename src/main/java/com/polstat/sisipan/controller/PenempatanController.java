@@ -47,6 +47,7 @@ public class PenempatanController {
     public ResponseEntity<?> getHasilPenempatan(@RequestParam(name = "size", required = false, defaultValue = "10") int size) {
 
         try {
+            System.out.println("call penempatan");
             penempatanService.penempatan();
             List<PilihanDto> pilihanList = pilihanService.getAllPilihan();
             if (pilihanList.isEmpty()) {
@@ -56,11 +57,13 @@ public class PenempatanController {
             if (size > penempatanResponses.size()) {
                 size = penempatanResponses.size();
             }
+            System.out.println("sukses penempatan");
             SuccessResponse successResponse = new SuccessResponse(penempatanResponses.subList(0, size), "Success", "OK",
                     HttpStatus.OK.value());
             return ResponseEntity.ok(successResponse);
         } catch (Exception ex) {
-            ErrorResponse errorResponse = new ErrorResponse("Internal Server Error",
+            ErrorResponse errorResponse;
+            errorResponse = new ErrorResponse("Internal Server Error",
                     HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }

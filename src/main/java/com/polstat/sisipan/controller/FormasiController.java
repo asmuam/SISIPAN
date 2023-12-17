@@ -56,10 +56,12 @@ public class FormasiController {
 
     @GetMapping
     public ResponseEntity<?> getAllFormasi(
-            @RequestParam(name = "size", required = false, defaultValue = "10") int size) {
+            @RequestParam(name = "size", required = false, defaultValue = "1000") int size) {
         try {
             List<FormasiDto> formasiList = formasiService.getAllFormasi();
-            SuccessResponse successResponse = new SuccessResponse(formasiList.subList(0, size), "Success", "OK",
+            int requestedSize = Math.min(size, formasiList.size());
+
+            SuccessResponse successResponse = new SuccessResponse(formasiList.subList(0, requestedSize), "Success", "OK",
                     HttpStatus.OK.value());
             System.out.println("call");
             return ResponseEntity.ok(successResponse);
@@ -212,7 +214,10 @@ public class FormasiController {
         try {
             boolean deleted = formasiService.deleteFormasi(id);
             if (deleted) {
-                return ResponseEntity.noContent().build();
+                System.out.println("deleted");
+                SuccessResponse successResponse = new SuccessResponse("", "Success", "OK",
+                        HttpStatus.OK.value());
+                return ResponseEntity.ok(successResponse);
             } else {
                 ErrorResponse errorResponse = new ErrorResponse("Not Found", HttpStatus.NOT_FOUND.value(),
                         "Formasi not found");

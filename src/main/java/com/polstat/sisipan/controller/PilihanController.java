@@ -290,7 +290,7 @@ public class PilihanController {
             successResponse.setHttpStatus("No Content");
             successResponse.setHttpStatusCode(HttpStatus.NO_CONTENT.value());
             successResponse.setMessage("All pilihan deleted successfully");
-            return ResponseEntity.status(HttpStatus.NO_CONTENT).body(successResponse);
+            return ResponseEntity.status(HttpStatus.OK).body(successResponse);
         } catch (Exception ex) {
             ErrorResponse errorResponse = new ErrorResponse("Internal Server Error",
                     HttpStatus.INTERNAL_SERVER_ERROR.value(), ex.getMessage());

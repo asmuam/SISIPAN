@@ -262,7 +262,25 @@ public class PenempatanService {
             }
             // Iterate over the list and save each Pilihan PS:BIAR KUOTA TERSEDI UTK PENGHITUNGAN TERESET GPP BERAT BARU SKALA KECIL
             for (Pilihan pilihan : semuaPilihan) {
-                pilihanRepository.save(pilihan);
+                Formasi pilihan1 = pilihan.getPilihan1();
+                Formasi pilihan2 = pilihan.getPilihan2();
+                Formasi pilihan3 = pilihan.getPilihan3();
+
+                pilihan1.setKuotaStTersedia(pilihan1.getKuotaSt());
+                pilihan1.setKuotaKsTersedia(pilihan1.getKuotaKs());
+                pilihan1.setKuotaD3Tersedia(pilihan1.getKuotaD3());
+
+                pilihan2.setKuotaStTersedia(pilihan2.getKuotaSt());
+                pilihan2.setKuotaKsTersedia(pilihan2.getKuotaKs());
+                pilihan2.setKuotaD3Tersedia(pilihan2.getKuotaD3());
+
+                pilihan3.setKuotaStTersedia(pilihan3.getKuotaSt());
+                pilihan3.setKuotaKsTersedia(pilihan3.getKuotaKs());
+                pilihan3.setKuotaD3Tersedia(pilihan3.getKuotaD3());
+
+                formasiRepository.save(pilihan1);
+                formasiRepository.save(pilihan2);
+                formasiRepository.save(pilihan3);
             }
 
         } catch (Exception e) {

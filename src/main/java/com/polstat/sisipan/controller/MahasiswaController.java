@@ -159,11 +159,9 @@ public class MahasiswaController {
         try {
             boolean deleted = mahasiswaService.deleteMahasiswa(id);
             if (deleted) {
-                SuccessResponse successResponse = new SuccessResponse();
-                successResponse.setHttpStatus("No Content");
-                successResponse.setHttpStatusCode(HttpStatus.NO_CONTENT.value());
-                successResponse.setMessage("Mahasiswa deleted successfully");
-                return ResponseEntity.status(HttpStatus.NO_CONTENT).body(successResponse);
+                SuccessResponse successResponse = new SuccessResponse("", "Success", "OK",
+                        HttpStatus.OK.value());
+                return ResponseEntity.ok(successResponse);
             } else {
                 ErrorResponse errorResponse = new ErrorResponse("Not Found", HttpStatus.NOT_FOUND.value(),
                         "Mahasiswa not found");

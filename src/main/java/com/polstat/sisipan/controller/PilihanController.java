@@ -6,6 +6,7 @@ package com.polstat.sisipan.controller;
 
 import com.polstat.sisipan.auth.JwtFilter;
 import com.polstat.sisipan.dto.PilihanDto;
+import com.polstat.sisipan.entity.Pilihan;
 import com.polstat.sisipan.repository.PilihanRepository;
 import com.polstat.sisipan.repository.UserRepository;
 import com.polstat.sisipan.rpc.ErrorResponse;
@@ -20,6 +21,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,9 +63,11 @@ public class PilihanController {
         try {
             List<PilihanDto> pilihanList = pilihanService.getAllPilihan();
             if (pilihanList.isEmpty()) {
-                throw new ResourceNotFoundException("Belum ada mahasiswa yang memilih");
+                SuccessResponse successResponse = new SuccessResponse(new ArrayList<Pilihan>(), "Success", "OK",
+                        HttpStatus.OK.value());
+                return ResponseEntity.ok(successResponse);
             }
-                int requestedSize = Math.min(size, pilihanList.size());
+            int requestedSize = Math.min(size, pilihanList.size());
             SuccessResponse successResponse = new SuccessResponse(pilihanList.subList(0, requestedSize), "Success", "OK",
                     HttpStatus.OK.value());
             return ResponseEntity.ok(successResponse);
@@ -215,7 +219,6 @@ public class PilihanController {
 //                        HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
 //                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
 //            }
-            
             PilihanDto updatedPilihan = pilihanService.updatePilihan(pilihanId, request);
             SuccessResponse response = new SuccessResponse();
             response.setData(updatedPilihan);
@@ -252,7 +255,7 @@ public class PilihanController {
                         HttpStatus.UNAUTHORIZED.value(), "Unauthorized access");
                 return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(errorResponse);
             }
-            
+
             boolean deleted = pilihanService.deletePilihan(pilihanId);
             if (deleted) {
                 SuccessResponse successResponse = new SuccessResponse();
@@ -283,6 +286,7 @@ public class PilihanController {
         try {
             pilihanService.deleteAllPilihan();
             SuccessResponse successResponse = new SuccessResponse();
+            successResponse.setData("Empty");
             successResponse.setHttpStatus("No Content");
             successResponse.setHttpStatusCode(HttpStatus.NO_CONTENT.value());
             successResponse.setMessage("All pilihan deleted successfully");

@@ -138,10 +138,10 @@ public class PenempatanService {
 
             // Hitung jumlah mahasiswa yang ada di tabel Mahasiswa
             long jumlahMahasiswa = mahasiswaRepository.count();
+            List<Pilihan> semuaPilihan = pilihanRepository.findAll();
 
             // Jika jumlah pilihan sama dengan jumlah mahasiswa
             if (jumlahPilihan == jumlahMahasiswa) {
-                List<Pilihan> semuaPilihan = pilihanRepository.findAll();
 
                 // Loop untuk pilihan 1
                 for (Pilihan pilihan : semuaPilihan) {
@@ -260,6 +260,11 @@ public class PenempatanService {
                 }
                 penempatanAcak();
             }
+            // Iterate over the list and save each Pilihan PS:BIAR KUOTA TERSEDI UTK PENGHITUNGAN TERESET GPP BERAT BARU SKALA KECIL
+            for (Pilihan pilihan : semuaPilihan) {
+                pilihanRepository.save(pilihan);
+            }
+
         } catch (Exception e) {
             // Tangani pengecualian
             e.printStackTrace(); // Tampilkan pengecualian pada konsol
